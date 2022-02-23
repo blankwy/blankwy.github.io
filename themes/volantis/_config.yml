@@ -265,7 +265,7 @@ comments:
   # https://giscus.app
   # https://github.com/laymonage/giscus
   giscus:
-    theme:
+     theme:
       light: "light" # https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/css/giscus/light.css
       dark: "dark" # https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/css/giscus/dark.css
     # 以下配置按照 yml 格式增删填写即可
