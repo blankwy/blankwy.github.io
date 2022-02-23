@@ -16,7 +16,7 @@ default:
 #
 
 ############################### Volantis ###############################
-info:
+info: 
   theme_name: Volantis # This is theme's name.
   theme_version: '5.0.0-alpha.9' # This is theme's version.
   theme_docs: https://volantis.js.org/ # This is theme's URL.
