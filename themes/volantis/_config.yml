@@ -269,14 +269,14 @@ comments:
       light: "light" # https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/css/giscus/light.css
       dark: "dark" # https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/css/giscus/dark.css
     # 以下配置按照 yml 格式增删填写即可
-    repo: blankwy/blankwy.github.io
-    repo-id: R_kgDOG3IJMg
-    category: Announcements
-    category-id: DIC_kwDOG3IJMs4CBP8_
-    mapping: "title"
-    reactions-enabled: "1"
-	emit-metadata: "0"
-    lang: "zh-CN"
+     repo: blankwy/blankwy.github.io
+     repo-id: R_kgDOG3IJMg
+     category: Announcements
+     category-id: DIC_kwDOG3IJMs4CBP8_
+     mapping: "title"
+     reactions-enabled: "1"
+	 emit-metadata: "0"
+     lang: "zh-CN"
 
   # beaudar
   # https://beaudar.lipk.org/
