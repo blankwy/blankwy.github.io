@@ -95,19 +95,19 @@ cover:
   features:
     - name: 博客
       icon: #
-      img: /media/twemoji/assets/svg/1f4f0.svg 
+      img: /media/twemoji/assets/svg/1f4f0.svg
       url: /
     - name: 项目
       icon: #
-      img: /media/twemoji/assets/svg/1f5c3.svg 
+      img: /media/twemoji/assets/svg/1f5c3.svg
       url: /projects/
     - name: 归档
       icon: #
-      img: /media/twemoji/assets/svg/1f516.svg 
+      img: /media/twemoji/assets/svg/1f516.svg
       url: /archives/
     - name: 源码
       icon: #
-      img: /media/twemoji/assets/svg/1f9ec.svg 
+      img: /media/twemoji/assets/svg/1f9ec.svg
       url: https://github.com/blankwy/blankwy.github.io/
 ############################### Cover ############################### > end
 
