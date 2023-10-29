@@ -53,7 +53,7 @@ menu:
 nav:
   enable: true
   travelling: true
-  clock: true  # 左上角天气挂件开关
+  clock: false  # 左上角天气挂件开关
   menu:
     - title: 站点
       item:
@@ -123,11 +123,11 @@ copy:
 # formal:
 #   icon: link || the description || Animation
 social:
-  Github: https://github.com/geekswg || anzhiyu-icon-github
-  Email: mailto://geekswg@qq.com || anzhiyu-icon-envelope
+  Github: https://github.com/blankwy || anzhiyu-icon-github
+  Email: mailto://2035650646@qq.com || anzhiyu-icon-envelope
   #RSS: atom.xml || anzhiyu-icon-rss
   #BiliBili: https://space.bilibili.com/39865904 || anzhiyu-icon-bilibili
-  QQ: tencent://Message/?Uin=1101303970&amp;websiteName=local.edu.com:8888=&amp;Menu=yes || anzhiyu-icon-qq
+  QQ: tencent://Message/?Uin=2035650646&amp;websiteName=local.edu.com:8888=&amp;Menu=yes || anzhiyu-icon-qq
 # 作者状态
 author_status:
   enable: true
@@ -332,7 +332,7 @@ post_copyright:
   enable: true
   decode: true
   author_href: https://geekswg.js.cool
-  location: 神州大地
+  location: 乌托邦
   license: CC BY-NC-SA 4.0
   license_url: https://creativecommons.org/licenses/by-nc-sa/4.0/
   # >1.4.2
@@ -360,7 +360,7 @@ post_edit:
   enable: true
   # url: https://github.com/user-name/repo-name/edit/branch-name/subdirectory-name/
   # For example: https://github.com/jerryc127/butterfly.js.org/edit/main/source/
-  url:  https://github.com/gavinblog/blog-anzhiyu/edit/master/source/
+  url:  https://github.com/blankwy/blankwy.github.io/edit/master/source/
 
 # Related Articles 相关文章推荐
 related_post:
@@ -687,13 +687,13 @@ footer:
     subTitle:
       enable: true
       # Typewriter Effect (打字效果)
-      effect: true
+      effect: false
       # Effect Speed Options (打字效果速度参数)
       startDelay: 300 # time before typing starts in milliseconds
       typeSpeed: 150 # type speed in milliseconds
       backSpeed: 50 # backspacing speed in milliseconds
       # loop (循环打字)
-      loop: true
+      loop: false
       # source 调用第三方服务
       # source: false 关闭调用
       # source: 1  调用一言网的一句话（简体） https://hitokoto.cn/
@@ -835,7 +835,7 @@ rightside-bottom: 100px
 
 # Enter transitions (开啓网页进入效果)  - 无用配置
 #网页开始效果 开启后 下面部分功能才能使用
-enter_transitions: true
+enter_transitions: false
 
 # Background effects (背景特效)
 # --------------------------------------
@@ -868,7 +868,7 @@ canvas_nest:
 # Typewriter Effect (打字效果)
 # https://github.com/disjukr/activate-power-mode
 activate_power_mode:
-  enable: true
+  enable: false
   colorful: true # open particle animation (冒光特效)
   shake: true #  open shake (抖动特效)
   mobile: false
