@@ -17,7 +17,8 @@ jobs:
         run: npm install -g hexo-cli
       - name: init git
         run:  git config --global user.email "2035650646@qq.com"
-              git config --global user.name "blankwy"
+      - name: init gitname
+        run:  git config --global user.name "blankwy"
       - name: Install Dependencies
         run: npm install
       - name: Generate Hexo
