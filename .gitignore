@@ -10,3 +10,4 @@ dist/
 # 忽略 public 目录
 public/
 
+.deploy_git/
