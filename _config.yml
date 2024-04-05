@@ -109,4 +109,7 @@ search:
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: ''
+  type: git
+  repo: git@github.com:blankwy/blankwy.github.io.git
+  branch: gh-pages
+  

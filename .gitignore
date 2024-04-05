@@ -1,0 +1,12 @@
+# 忽略 node_modules 目录
+node_modules/
+
+# 忽略 build 目录
+build/
+
+# 忽略 dist 目录
+dist/
+
+# 忽略 public 目录
+public/
+
