@@ -1,28 +1,22 @@
-name: Deploy Hexo to GitHub Pages
-
-on:
-  push:
-    branches: [ master ] # 指定触发部署的分支
-
+on: push
+name: Deploy
 jobs:
-  deploy:
+  build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Install Node.js
-        uses: actions/setup-node@v2
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIKEY }}
-          node-version: '14.x' # 指定 Node.js 版本
-      - name: Install Hexo
-        run: npm install -g hexo-cli
-      - name: init git
-        run:  git config --global user.email "2035650646@qq.com"
-      - name: init gitname
-        run:  git config --global user.name "blankwy"
-      - name: Install Dependencies
-        run: npm install
-      - name: Generate Hexo
-        run: hexo g
-      - name: Deploy Hexo
-        run: hexo d
+    - name: Clean
+      uses: heowc/action-hexo@main
+      with:
+        args: clean
+    - name: Generate
+      uses: heowc/action-hexo@main
+      with:
+        args: generate
+    - name: Deploy
+      uses: heowc/action-hexo@main
+      env:
+        EMAIL: 2035650646@qq.com
+        NAME: blankwy
+      with:
+        args: deploy
