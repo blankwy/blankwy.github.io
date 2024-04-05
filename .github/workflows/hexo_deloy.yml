@@ -12,6 +12,7 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v2
         with:
+          ssh-private-key: ${{ secrets.SSH_PRIKEY }}
           node-version: '14.x' # 指定 Node.js 版本
       - name: Install Hexo
         run: npm install -g hexo-cli
