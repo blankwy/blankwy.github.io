@@ -48,7 +48,7 @@ jobs:
         # run: git submodule deinit themes/tenacity && git rm themes/tenacity
       # 安装主题
       - name: Install Theme
-        run: git submodule add https://github.com/all-smile/tenacity.git themes/tenacity
+        run: git submodule add  https://github.com/jerryc127/hexo-theme-butterfly.git themes/butterfly
       - name: Clean
         run: npm run clean
       - name: Build
@@ -57,8 +57,8 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY  }}
-          user_name: xiao
-          user_email: allblue95@126.com
+          user_name: blankwy
+          user_email: 2035650646@qq.com
           # 获取提交文章源码时的commit message，作为发布gh-pages分支的信息
           commit_message: ${{ github.event.head_commit.message }}
           full_commit_message: ${{ github.event.head_commit.message }}
@@ -70,3 +70,4 @@ jobs:
       - name: Get the output
         run: |
           echo "${{ steps.deploy.outputs.notify }}"
+
