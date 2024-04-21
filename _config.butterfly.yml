@@ -35,8 +35,10 @@ code_word_wrap: false
 # formal:
 #   icon: link || the description || color
 social:
+   fab fa-qq: https://qm.qq.com/cgi-bin/qm/qr?k=NRmiizQR6o0muV-ky8tlwaaZQRns9wUT&noverify=0&personal_qrcode_source=3 || QQ || '#018BBA'
    fab fa-github: https://github.com/blankwy || Github || '#24292e'
    fas fa-envelope: mailto:2035650646@qq.com || Email || '#4a7dbe'
+   fab fa-bilibili: https://space.bilibili.com/37820495? || Bilibili || '#FF6699'
 
 # Image (圖片設置)
 # --------------------------------------
@@ -98,7 +100,7 @@ error_img:
 
 # A simple 404 page
 error_404:
-  enable: false
+  enable: true
   subtitle: 'Page Not Found'
   background: https://i.loli.net/2020/05/19/aKOcLiyPl2JQdFD.png
 
@@ -231,12 +233,25 @@ aside:
     description:
     button:
       enable: true
-      icon: fab fa-github
-      text: Follow Me
-      link: https://github.com/blankwy
+      icon: fa fa-home
+      text: 主页
+      link: https://binarydev.top
   card_announcement:
     enable: true
-    content: 欢迎来到我的博客
+    content: |
+              ★ 欢迎来到我的博客
+              ☁ 这里有：
+                ☑ 技术文章、踩坑日志、折腾心得
+                ☑ 资源分享、项目开发
+                ☑ 学习笔记、生活感想
+                ☑ 还有更多...
+              ☂ 不过大抵是自娱自乐orz
+              ✄⊹⊹⊹⊹⊹⊹⊹⊹⊹⊹
+              聊聊？加群：<a href="https://qm.qq.com/cgi-bin/qm/qr?k=pEGBXHfz4-ILg3qx0EKssiJ6L_I8h89y&jump_from=webapi&authKey=rg57DJVNBb76qv/vSqpC5rKTEI160LAQIcDJubweLMfu7ut7lF9Q+mTrGQmkcYx5">138547166</a>
+              ✄⊹⊹⊹⊹⊹⊹⊹⊹⊹⊹
+              了解我：https://blog.binarydev.top/about
+              
+              
   card_recent_post:
     enable: true
     limit: 5 # if set 0 will show all
