@@ -261,7 +261,6 @@ type: "about"
 
 <div class="author-box">
     <div class="author-img">
-        <img class="no-lightbox" src="https://blog.qyliu.top/info/avatar.ico">
         <div class="green-dot"></div>
     </div>
     <div class="image-dot"></div>
@@ -290,7 +289,6 @@ type: "about"
 </div>
 
 <div class="section right">
-    <img src="https://cdn.qyliu.top/i/2024/04/14/661ab051377ef.png">
     <div class="content">
         <h2>精神状态</h2>
         <ul>
@@ -301,7 +299,6 @@ type: "about"
 </div>
 
 <div class="section left">
-    <img src="https://cdn.qyliu.top/i/2024/04/14/661ab078b3033.png">
     <div class="content">
         <h2>梦想</h2>
         <ul>
@@ -313,7 +310,6 @@ type: "about"
 </div>
 
 <div class="section right">
-    <img src="https://cdn.qyliu.top/i/2024/04/14/661ab09243659.png">
     <div class="content">
         <h2>项目作品</h2>
         <ul>
@@ -325,7 +321,6 @@ type: "about"
 </div>
 
 <div class="section left">
-	<img src="https://cdn.qyliu.top/i/2024/04/14/661ab0c2a778f.png">
     <div class="content">
         <h2>技能</h2>
         <ul>
@@ -342,19 +337,19 @@ type: "about"
     <div class="label"><h2>本人站点</h2></div>
     <div class="site-grid">
         <a href="https://binarydev.top/" target="_blank" class="site-item"
-            style="background-image: url('https://cdn.qyliu.top/i/2024/04/14/661ab1495ff39.png')">
+            >
             <div class="site-overlay">
                 <span>无愚的乌托邦<br>（个人主页）</span>
             </div>
         </a>
         <a href="https://blog.binarydev.top/" target="_blank" class="site-item"
-            style="background-image: url('https://cdn.qyliu.top/i/2024/04/14/661ab179e85c2.png')">
+           >
             <div class="site-overlay">
                 <span>无愚的日记<br>（本博客）</span>
             </div>
         </a>
         <a href="https://bedrock.binarydev.top/" target="_blank" class="site-item"
-            style="background-image: url('https://cdn.qyliu.top/i/2024/04/14/661ab19811d2c.png')">
+   >
             <div class="site-overlay">
                 <span>基岩盒子<br></span>
             </div>
