@@ -101,8 +101,8 @@ error_img:
 # A simple 404 page
 error_404:
   enable: true
-  subtitle: 'Page Not Found'
-  background: https://i.loli.net/2020/05/19/aKOcLiyPl2JQdFD.png
+  subtitle: '这里啥都没有 ：Page Not Found'
+  background: https://s1.hdslb.com/bfs/static/jinkela/long/bitmap/error_01.png
 
 post_meta:
   page: # Home Page
@@ -239,17 +239,17 @@ aside:
   card_announcement:
     enable: true
     content: |
-              ★ 欢迎来到我的博客
-              ☁ 这里有：
-                ☑ 技术文章、踩坑日志、折腾心得
-                ☑ 资源分享、项目开发
-                ☑ 学习笔记、生活感想
-                ☑ 还有更多...
-              ☂ 不过大抵是自娱自乐orz
+              ★ 欢迎来到我的博客</br>
+              ☁ 这里有：</br>
+                ☑ 技术文章、踩坑日志、折腾心得</br>
+                ☑ 资源分享、项目开发</br>
+                ☑ 学习笔记、生活感想</br>
+                ☑ 还有更多...</br>
+              ☂ 不过大抵是自娱自乐orz</br>
               ✄⊹⊹⊹⊹⊹⊹⊹⊹⊹⊹
               聊聊？加群：<a href="https://qm.qq.com/cgi-bin/qm/qr?k=pEGBXHfz4-ILg3qx0EKssiJ6L_I8h89y&jump_from=webapi&authKey=rg57DJVNBb76qv/vSqpC5rKTEI160LAQIcDJubweLMfu7ut7lF9Q+mTrGQmkcYx5">138547166</a>
               ✄⊹⊹⊹⊹⊹⊹⊹⊹⊹⊹
-              了解我：https://blog.binarydev.top/about
+              了解我：<a href="https://blog.binarydev.top/about">About</a>
               
               
   card_recent_post:
