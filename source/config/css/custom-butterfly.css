@@ -1,7 +1,7 @@
 #footer {
-    opacity: 0.8;
+    opacity: 0.9;
     position: relative;
-    background-color: #1de324;
+    background-color: var(--btn-bg);
     background-attachment: scroll;
     background-position: bottom;
     background-size: cover;
@@ -29,5 +29,14 @@
 
 
 #sidebar #sidebar-menus.open {
+    opacity: 0.9;
+}
+
+
+#recent-posts > .recent-post-item {
+    opacity: 0.9;
+}
+
+#aside-content .card-widget {
     opacity: 0.9;
 }
