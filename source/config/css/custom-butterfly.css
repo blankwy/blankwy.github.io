@@ -1,0 +1,33 @@
+#footer {
+    opacity: 0.8;
+    position: relative;
+    background-color: #1de324;
+    background-attachment: scroll;
+    background-position: bottom;
+    background-size: cover;
+}
+
+@media screen and (max-width: 768px) {
+    #recent-posts > .recent-post-item {
+        opacity: 0.9;
+        -webkit-box-orient: vertical;
+        -moz-box-orient: vertical;
+        -o-box-orient: vertical;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        height: auto;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    #aside-content {
+        width: 100%;
+        opacity: 0.9;
+    }
+}
+
+
+#sidebar #sidebar-menus.open {
+    opacity: 0.9;
+}
