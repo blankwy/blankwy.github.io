@@ -42,3 +42,12 @@ updated: {{ date }}
 加上一行`git ls-files -z | while read -d '' path; do touch -d "\$(git log -1 --format="@%ct" "\$path")" "\$path"; done`来矫正修改日期即可。
 
 已加入[本站自动部署workflow | 无愚の日记 (binarydev.top)](https://blog.binarydev.top/posts/2024/04/13/27508/))，可参考。
+
+
+
+
+参考文章：
+
+[hexo自动更新文章修改时间 - yyyz - 博客园 (cnblogs.com)](https://www.cnblogs.com/yyyzyyyz/p/15792199.html)
+
+[Hexo GitHub Action CI配置(解决文章修改时间问题) | Calvin Cui (unparalleled-calvin.github.io)](https://unparalleled-calvin.github.io/Blog/2022/10/14/Hexo-GitHub-Action-CI%E9%85%8D%E7%BD%AE(%E8%A7%A3%E5%86%B3%E6%96%87%E7%AB%A0%E4%BF%AE%E6%94%B9%E6%97%B6%E9%97%B4%E9%97%AE%E9%A2%98)/)
