@@ -20,6 +20,11 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '12'
+          
+      - name: Restore file modification time
+        run: |
+          git ls-files -z | while read -d '' path; do touch -d "$(git log -1 --format="@%ct" "$path")" "$path"; done
+
 
       - name: Setup Hexo
         env:
@@ -32,7 +37,6 @@ jobs:
           ssh-keyscan github.com >> ~/.ssh/known_hosts
           git config --global user.email "2035650646@qq.com"
           git config --global user.name "blankwy"
-          git ls-files --directory source | while read path; do touch -d "$(git log -1 --format='@%ct' $path)" "$path"; done
           npm install hexo-cli -g
           npm install
       - name: Deploy
