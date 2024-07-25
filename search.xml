@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Hello World</title>
+    <url>/posts/2024/03/28/16107/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>hexo每次远程部署会变动文章更新日期解决方案</title>
+    <url>/posts/2024/07/24/38823/</url>
+    <content><![CDATA[<h1 id="踩坑"><a href="#踩坑" class="headerlink" title="踩坑"></a>踩坑</h1><p>配置了<code>update_option: mtime</code>和<code>order_by: -updated</code>，实现文章按最后修改日期排序，但每次部署完发现都会有个hello world不合时宜地出现在最上面😓 打开发现大部分文章的修改日期都变成了同一个——部署的日期，而自己加了updated参数的不受影响，疑似git本身对文件修改日期的判定机制导致。</p>
+<p>于是乎，给每个文章都添加了updated参数，例如</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: Hello World</span><br><span class="line">date: 2023-01-01 00:00:00</span><br><span class="line"><span class="section">updated: 2023-02-01 00:00:00</span></span><br><span class="line"><span class="section">---</span></span><br></pre></td></tr></table></figure>
+
+<p>勉强解决，但每次都手动添加太麻烦了。</p>
+<h1 id="完美解决方案"><a href="#完美解决方案" class="headerlink" title="完美解决方案"></a>完美解决方案</h1><h2 id="修改格式模板"><a href="#修改格式模板" class="headerlink" title="修改格式模板"></a>修改格式模板</h2><p>在文章模板中添加updated参数到Front-matter（修改&#x2F;scaffolds&#x2F;post.md），如下</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">date: &#123;&#123; date &#125;&#125;</span><br><span class="line">tags:</span><br><span class="line"><span class="section">updated: &#123;&#123; date &#125;&#125;</span></span><br><span class="line"><span class="section">---</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="在自动部署脚本加上对时间的矫正"><a href="#在自动部署脚本加上对时间的矫正" class="headerlink" title="在自动部署脚本加上对时间的矫正"></a>在自动部署脚本加上对时间的矫正</h2><p>加上一行<code>git ls-files -z | while read -d &#39;&#39; path; do touch -d &quot;\$(git log -1 --format=&quot;@%ct&quot; &quot;\$path&quot;)&quot; &quot;\$path&quot;; done</code>来矫正修改日期即可。</p>
+<p>已加入<a href="https://blog.binarydev.top/posts/2024/04/13/27508/">本站自动部署workflow | 无愚の日记 (binarydev.top)</a>)，可参考。</p>
+<p>参考文章：</p>
+<p><a href="https://www.cnblogs.com/yyyzyyyz/p/15792199.html">hexo自动更新文章修改时间 - yyyz - 博客园 (cnblogs.com)</a></p>
+<p><a href="https://unparalleled-calvin.github.io/Blog/2022/10/14/Hexo-GitHub-Action-CI%E9%85%8D%E7%BD%AE(%E8%A7%A3%E5%86%B3%E6%96%87%E7%AB%A0%E4%BF%AE%E6%94%B9%E6%97%B6%E9%97%B4%E9%97%AE%E9%A2%98)/">Hexo GitHub Action CI配置(解决文章修改时间问题) | Calvin Cui (unparalleled-calvin.github.io)</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>js应在dom加载完成再操作元素</title>
+    <url>/posts/2024/07/24/4187/</url>
+    <content><![CDATA[<p>省流：放到body下面或者套上window.onload()</p>
+<h1 id="情景"><a href="#情景" class="headerlink" title="情景"></a>情景</h1><p>修改flarum时，在后台自定义页眉html代码包了块script写js，通过<code>getElementsByClassName(&#39; &#39;)</code>来获取某指定类的标签的对象，遍历检测是否包含特定文本，再修改其文字内容，然而没有生效。💩</p>
+<p>原代码：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;test001&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> elements = <span class="variable language_">document</span>.<span class="title function_">getElementsByClassName</span>(<span class="string">&#x27;TagLabel-name&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 遍历这些元素</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; elements.<span class="property">length</span>; i++) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;test002&quot;</span>);</span><br><span class="line">  <span class="comment">// 获取当前元素的文本内容</span></span><br><span class="line">  <span class="keyword">var</span> text = elements[i].<span class="property">textContent</span> || elements[i].<span class="property">innerText</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 检查文本内容是否为&#x27;Win&#x27;或&#x27;Linux&#x27;</span></span><br><span class="line">  <span class="keyword">if</span> (text === <span class="string">&#x27;Win&#x27;</span> || text === <span class="string">&#x27;Linux&#x27;</span> || text === <span class="string">&#x27;Mac&#x27;</span> || text === <span class="string">&#x27;安卓&#x27;</span>) &#123;</span><br><span class="line">   elements[i].<span class="property">textContent</span>=<span class="string">&#x27;&#x27;</span>; </span><br><span class="line">   <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;test003&quot;</span>);</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>控制台输出结果只有test001，js被执行了，但没有进一步遍历到元素。</p>
+<p>通过一顿chatgpt了解到：这段js执行的时候dom还没加载完全，需要get到的元素还不存在。</p>
+<h1 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h1><p>解决方案是：</p>
+<ol>
+<li>script代码块<strong>放到body下面</strong></li>
+<li>或者加上**window.onload()**来确保dom加载完成。</li>
+</ol>
+<p>后者：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line"><span class="variable language_">window</span>.<span class="property">onload</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line"></span><br><span class="line">………… <span class="comment">//要执行的代码</span></span><br><span class="line"></span><br><span class="line">&#125;;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>总结：我是个不会js的麻瓜😬</p>
+]]></content>
+      <categories>
+        <category>技术分享</category>
+        <category>建站</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+        <tag>踩坑</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>本站自动部署workflow</title>
+    <url>/posts/2024/04/13/27508/</url>
+    <content><![CDATA[<p>用于github actions自动部署hexo</p>
+<p>非本人原创，网上找来改改就用上了👌</p>
+<p><em>原代码会queued，将ubuntu版本改为latest解决了</em></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">name:</span> <span class="string">Hexo</span> <span class="string">Deploy</span></span><br><span class="line"></span><br><span class="line"><span class="attr">on:</span></span><br><span class="line">  <span class="attr">push:</span></span><br><span class="line">    <span class="attr">branches:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">master</span></span><br><span class="line"></span><br><span class="line"><span class="attr">jobs:</span></span><br><span class="line">  <span class="attr">build:</span></span><br><span class="line">    <span class="attr">runs-on:</span> <span class="string">ubuntu-latest</span></span><br><span class="line">    <span class="attr">if:</span> <span class="string">github.event.repository.owner.id</span> <span class="string">==</span> <span class="string">github.event.sender.id</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">steps:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Checkout</span> <span class="string">source</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">actions/checkout@v2</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">ref:</span> <span class="string">master</span></span><br><span class="line"></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Setup</span> <span class="string">Node.js</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">actions/setup-node@v1</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">node-version:</span> <span class="string">&#x27;12&#x27;</span></span><br><span class="line"></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Setup</span> <span class="string">Hexo</span></span><br><span class="line">        <span class="attr">env:</span></span><br><span class="line">          <span class="attr">ACTION_DEPLOY_KEY:</span> <span class="string">$&#123;&#123;</span> <span class="string">secrets.HEXO_DEPLOY_PRI</span> <span class="string">&#125;&#125;</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">          mkdir -p ~/.ssh/</span></span><br><span class="line"><span class="string">          echo &quot;$ACTION_DEPLOY_KEY&quot; &gt; ~/.ssh/id_rsa</span></span><br><span class="line"><span class="string">          chmod 700 ~/.ssh</span></span><br><span class="line"><span class="string">          chmod 600 ~/.ssh/id_rsa</span></span><br><span class="line"><span class="string">          ssh-keyscan github.com &gt;&gt; ~/.ssh/known_hosts</span></span><br><span class="line"><span class="string">          git config --global user.email &quot;2035650646@qq.com&quot;</span></span><br><span class="line"><span class="string">          git config --global user.name &quot;blankwy&quot;</span></span><br><span class="line"><span class="string">          git ls-files --directory source | while read path; do touch -d &quot;$(git log -1 --format=&#x27;@%ct&#x27; $path)&quot; &quot;$path&quot;; done</span></span><br><span class="line"><span class="string">          npm install hexo-cli -g</span></span><br><span class="line"><span class="string">          npm install</span></span><br><span class="line"><span class="string"></span>      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Deploy</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">          hexo clean</span></span><br><span class="line"><span class="string">          hexo deploy</span></span><br></pre></td></tr></table></figure>
+
+<p><code>HEXO_DEPLOY_PRI</code>为ssh私钥，自行生成并添加到secrets<br>再到deploy key里添加’HEXO_DEPLOY_PUB’，值为ssh公钥</p>
+]]></content>
+      <categories>
+        <category>技术分享</category>
+        <category>建站</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>github</tag>
+        <tag>actions</tag>
+        <tag>自动部署</tag>
+      </tags>
+  </entry>
+</search>
