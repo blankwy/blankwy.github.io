@@ -1,5 +1,5 @@
 ---
-abbrlink: 频率分布直方图manim源码
+abbrlink: 
 categories:
 - - 技术分享
 - - 数学
