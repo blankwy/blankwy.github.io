@@ -23,6 +23,7 @@ updated: '2025-04-06T11:47:30.785+08:00'
 
 ```java
 String a=null;
+if(a!=null&a.isEmpty())
 ```
 
 
@@ -30,6 +31,7 @@ String a=null;
 
 ```java
 String a=null;
+if(a!=null&&a.isEmpty())
 ```
 
 左边判断不成立后，右边不会执行
