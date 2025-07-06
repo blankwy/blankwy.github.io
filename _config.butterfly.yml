@@ -11,16 +11,16 @@ nav:
 menu:
   主页: https://binarydev.top || fas fa-home
   博客: / || fas fa-blog
-  说说: /talks/ || fa fa-commenting faa-wrench
+  说说: /talks || fa fa-commenting faa-wrench
   项目: /projects/ || fas fa-diagram-project
   归档: /archives/ || fas fa-archive
   标签: /tags/ || fas fa-tags
   分类: /categories/ || fas fa-folder-open
-  List||fas fa-list:
-    Music: /music/ || fas fa-music
-    Movie: /movies/ || fas fa-video
+  了解我||fas fa-list:
+    关于页: /about/ || fas fa-heart
+    个人主页: https://binarydev.top || fas fa-home
   友链: /link/ || fas fa-link
-  了解我: /about/ || fas fa-heart
+ 
 
 # Code Blocks (代碼相關)
 # --------------------------------------
