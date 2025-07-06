@@ -11,6 +11,7 @@ nav:
 menu:
   主页: https://binarydev.top || fas fa-home
   博客: / || fas fa-blog
+  说说: /talks/ || fa fa-commenting faa-wrench
   项目: /projects/ || fas fa-diagram-project
   归档: /archives/ || fas fa-archive
   标签: /tags/ || fas fa-tags
@@ -48,7 +49,7 @@ favicon: /img/favicon.png
 
 # Avatar (頭像)
 avatar:
-  img: https://q.qlogo.cn/g?b=qq&nk=2035650646&s=100
+  img: /img/favicon.png
   effect: false
 
 # Disable all banner image
