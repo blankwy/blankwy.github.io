@@ -3,11 +3,11 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 无愚の日记
-subtitle: '一个不值一提的小博客'
-description: ''
-keywords:
-author: Binarydev
+title: 无愚的日记
+subtitle: 'BinaryDev's blog'
+description: '记录技术、学习与生活的地方'
+keywords: 无愚,wuyu,blankwy,binarydev,binary,无语,博客,blog,无愚博客,无愚日记,binarydev's blog
+author: BinaryDev
 language: zh-CN
 timezone: Asia/Shanghai
 
