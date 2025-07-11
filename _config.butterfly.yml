@@ -10,7 +10,6 @@ nav:
 # Menu 目錄
 menu:
   主页: https://binarydev.top || fas fa-home
-  博客: / || fas fa-blog
   说说: /talks || fa fa-commenting faa-wrench
   项目: /projects/ || fas fa-diagram-project
   归档: /archives/ || fas fa-archive
