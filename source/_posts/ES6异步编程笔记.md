@@ -1,6 +1,7 @@
 ---
 abbrlink: ''
-categories: []
+categories:
+- - '[技术学习,编程]'
 date: '2025-07-13T00:55:50.178636+08:00'
 tags:
 - JavaScript
