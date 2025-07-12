@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>ES6异步编程笔记</title>
+    <url>/posts/2025/07/12/5908/</url>
+    <content><![CDATA[<h1 id="计时器"><a href="#计时器" class="headerlink" title="计时器"></a>计时器</h1><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">setTimeout</span>(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">  代码块</span><br><span class="line">&#125;,等待时间)</span><br></pre></td></tr></table></figure>
+
+<p>无论等待时间多短，异步任务都不会阻塞接下来的代码执行，即使是0也会在同步任务执行完后再执行（宏任务，执行顺序在同步代码、微任务之后）</p>
+<p><a href="https://imgse.com/i/pVlDibq"><img src="https://s21.ax1x.com/2025/07/13/pVlDibq.png" alt="pVlDibq.png"></a></p>
+<h1 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h1><p>本身是个类，实例化传入函数执行异步任务，成功执行调用<code>resolve()</code>，失败调用<code>reject()</code>，两个方法都可以接受传入各种参数来传递成功&#x2F;失败信息</p>
+<p>成功（即<code>resolve()</code>被执行）后会自动执行该Promise对象的<code>then()</code>回调，<code>then()</code>方法本身返回一个新Promise对象，可以接着往下then，失败则调用catch()回调。</p>
+<p>除了<code>resolve()</code>和<code>reject()</code>外还有个<code>finally()</code>，无论成败都会在结束之后执行</p>
+<p><a href="https://imgse.com/i/pVlDAaV"><img src="https://s21.ax1x.com/2025/07/13/pVlDAaV.png" alt="pVlDAaV.png"></a></p>
+<p><strong>Async</strong></p>
+<p>先声明要异步的函数，把传入耗时任务的Promise对象作为返回值（如果任务本身是异步任务（<code>fetch</code>、<code>io</code>等）就直接传入，否则要手动用<code>setTimeout</code>等调整队列）</p>
+<p>用<code>async</code>修饰的函数简化后续操作，在<code>async</code>修饰的函数内使用<code>await Promise对象</code>来时async函数内余下任务等待promise的任务完成（<strong>但不会阻塞同步代码</strong>）</p>
+<p><a href="https://imgse.com/i/pVlDE5T"><img src="https://s21.ax1x.com/2025/07/13/pVlDE5T.png" alt="pVlDE5T.png"></a></p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://www.bilibili.com/video/BV1cX4y1b7vc/?share_source=copy_web&vd_source=1783b13c7749e59b8870148047aa7c79">20分钟学会ES6之异步处理 Promise&amp;Async 前端新手最头疼的技能之一</a></p>
+<p><a href="https://juejin.cn/post/7214018170835173434">web前端知识：js中的微任务和宏任务js中什么是微任务和宏任务 在 JavaScript 引擎中，任务分为两种类型：微 - 掘金</a></p>
+<p><a href="https://web.nodejs.cn/en-us/docs/web/javascript/guide/using_promises/">使用 promise - JavaScript | MDN Web 中文网</a></p>
+]]></content>
+      <categories>
+        <category>[技术学习,编程]</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+        <tag>编程</tag>
+        <tag>学习</tag>
+        <tag>技术分享</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ES6核心特性速通笔记</title>
+    <url>/posts/2025/07/10/22810/</url>
+    <content><![CDATA[<blockquote>
+<p><strong>碎碎念</strong></p>
+<p>高考完决定改学后端，经过一番纠结后最终选择了nodejs，凭借java基础和一点点js基础，过了几天文档和一些速通教程，通关ES6，以此笔记作结</p>
+</blockquote>
+<h1 id="模版字符串"><a href="#模版字符串" class="headerlink" title="模版字符串"></a><strong>模版字符串</strong></h1><p><code>&quot;a,&quot;+var1</code> ⇔ <code>`a,$&#123;var1&#125;`</code></p>
+<hr>
+<h1 id="解构赋值"><a href="#解构赋值" class="headerlink" title="解构赋值"></a><strong>解构赋值</strong></h1><h2 id="1-数组中"><a href="#1-数组中" class="headerlink" title="1.数组中"></a><strong>1.数组中</strong></h2><p><strong><code>const [a,b,c]=[1,2,3]</code></strong></p>
+<p>等同于</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> arr=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"><span class="keyword">const</span> a=arr[<span class="number">0</span>]</span><br><span class="line"><span class="keyword">const</span> b=arr[<span class="number">1</span>]</span><br><span class="line"><span class="keyword">const</span> c=arr[<span class="number">2</span>]</span><br></pre></td></tr></table></figure>
+
+<p><strong>便于操作组内某一元素</strong></p>
+<p><em>（补充：可以跳过不要的元素，变量名留空即可。如：*<em>const [a, ,c]&#x3D;[1,2,3]<strong>中a、c赋值了1、3而留空保留括号的的2没有被赋值到新的变量</strong></em></em>）</p>
+<h2 id="2-类中"><a href="#2-类中" class="headerlink" title="2.类中"></a><strong>2.类中</strong></h2><p>按顺序将内部属性赋值给左侧变量名，也可以用<strong>原属性名称:新名称</strong>的形式自定义名称或顺序</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123;username,<span class="attr">url</span>:link&#125; = &#123;</span><br><span class="line">	<span class="attr">username</span>: <span class="string">&quot;Binarydev&quot;</span>,</span><br><span class="line">	<span class="attr">url</span>: <span class="string">&quot;https://binarydev.top&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`Username is <span class="subst">$&#123;username&#125;</span> , with the link: <span class="subst">$&#123;link&#125;</span>`</span>) ;</span><br><span class="line"><span class="comment">//原本对象中url被赋值到了名为link的新变量中，username为进行该操作故不变</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="3-函数参数中"><a href="#3-函数参数中" class="headerlink" title="3.函数参数中"></a><strong>3.函数参数中</strong></h2><p><strong>可用于获取剩余参数</strong></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">fn</span>(<span class="params">a,...other</span>)&#123;</span><br><span class="line">   <span class="variable language_">console</span>.<span class="title function_">log</span>(a,other)&#125;</span><br></pre></td></tr></table></figure>
+
+<p>若传入<code>fn(1,2,3,4)</code>则会打印1,2,3,4，其中1被赋值给a，2,3,4被赋值给<strong>数组</strong>other</p>
+<p><strong>此写法可替代<a href="#1.arguments" title="下文的arguments">下文的arguments</a>，得到的是真数组</strong></p>
+<hr>
+<h1 id="扩展运算符"><a href="#扩展运算符" class="headerlink" title="扩展运算符"></a>扩展运算符</h1><h4 id="·-var2自动展开var2中所有项，可以用于合并或复制数组"><a href="#·-var2自动展开var2中所有项，可以用于合并或复制数组" class="headerlink" title="· ...var2自动展开var2中所有项，可以用于合并或复制数组"></a>· <code>...var2</code>自动展开var2中所有项，可以用于合并或复制数组</h4><p>（*补充：为什么不直接var3&#x3D;var2来复制？</p>
+<p>A直接赋值为<strong>浅拷贝</strong>，新变量指向指针而非重新创造对象，若var2在复制之后发生改变，var3也会一起变，本质还是同一对象而无法达到<strong>拷贝</strong>目的）*</p>
+<p>（补充：此法仅为一维深拷贝，若第二层指向相同变量则当任一第二层改变时，另一个也会跟着变，推荐使用<strong>lodash 的 cloneDeep 函数</strong>来进行全局深拷贝）</p>
+<h4 id="·-如果加在赋值行为左侧，则为展开剩余参数，用来一键赋值剩下的到-var3-将剩余参数合并到变量var3中，此时var3是包含所有剩余参数的数组"><a href="#·-如果加在赋值行为左侧，则为展开剩余参数，用来一键赋值剩下的到-var3-将剩余参数合并到变量var3中，此时var3是包含所有剩余参数的数组" class="headerlink" title="· 如果加在赋值行为左侧，则为展开剩余参数，用来一键赋值剩下的到...var3 将剩余参数合并到变量var3中，此时var3是包含所有剩余参数的数组"></a>· 如果加在<strong>赋值行为左侧</strong>，则为展开<strong>剩余参数</strong>，用来一键赋值剩下的到<code>...var3</code> 将剩余参数合并到变量<code>var3</code>中，此时var3是包含所有剩余参数的<strong>数组</strong></h4><p>参考上面的解构赋值</p>
+<h4 id="·-如果加在字符串前，再加方括号，可将字符串转为数组，每个字符对应一个项"><a href="#·-如果加在字符串前，再加方括号，可将字符串转为数组，每个字符对应一个项" class="headerlink" title="· 如果加在字符串前，再加方括号，可将字符串转为数组，每个字符对应一个项"></a>· 如果加在<strong>字符串前</strong>，再加方括号，可将字符串转为数组，每个字符对应一个项</h4><p><code>const a=[...&quot;cs:go&quot;]</code><br>此时a为一个数组<code>[&quot;c&quot;,&quot;s&quot;,&quot;:&quot;,&quot;g&quot;,&quot;o&quot;]</code></p>
+<hr>
+<h1 id="数组方法"><a href="#数组方法" class="headerlink" title="数组方法"></a>数组方法</h1><h2 id="1-arguments"><a href="#1-arguments" class="headerlink" title="1.arguments"></a>1.arguments</h2><p><strong>获取函数的所有参数（即使没有定义）</strong></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">fn</span>(<span class="params"></span>)&#123; </span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Array</span>.<span class="title function_">from</span>(<span class="variable language_">arguments</span>))</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>此时无论fn()传入什么参数都会被添加进arguments</strong></p>
+<p>属于<strong>伪数组</strong></p>
+<h2 id="2-伪数组转数组"><a href="#2-伪数组转数组" class="headerlink" title="2.伪数组转数组"></a><strong>2.伪数组转数组</strong></h2><p><code>Array.from(伪数组) </code></p>
+<p>返回值为<strong>数组</strong></p>
+<h2 id="3-数组的遍历"><a href="#3-数组的遍历" class="headerlink" title="3.数组的遍历"></a>3.数组的遍历</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">数组.<span class="title function_">forEach</span>(<span class="keyword">function</span>(<span class="params">item</span>)&#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(item)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>forEach方法传入的回调函数的参数item对应值为当前遍历所在循环中对应的数组项</p>
+<hr>
+<h1 id="对象方法"><a href="#对象方法" class="headerlink" title="对象方法"></a><strong>对象方法</strong></h1><p><code>Object.assign()</code></p>
+<p>用于对象的<strong>浅拷贝、合并</strong></p>
+<p><code>Object.assign(&#123;&#125;,objA,objB)</code>返回一个<strong>新对象</strong>，该对象含有objA和objB的</p>
+<p><code>Object.assign(obj0,objA,objB)</code><strong>直接修改</strong>obj0，将objA、objB的属性并入</p>
+<p>当并入的两个对象含有同名属性时，后并入的将覆盖前并入的</p>
+<hr>
+<h1 id="类"><a href="#类" class="headerlink" title="类"></a><strong>类</strong></h1><p>（java玩家警撅）</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> 类名&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//构造方法</span></span><br><span class="line"></span><br><span class="line">	<span class="title function_">constructor</span>(<span class="params">构造参数</span>)&#123;</span><br><span class="line">		<span class="variable language_">this</span>.<span class="property">var1</span>=var1</span><br><span class="line">		<span class="comment">//以此类推为类参数赋值</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//其它自定义方法(参考函数，省了function关键字)</span></span><br><span class="line">	<span class="title function_">method1</span>(<span class="params"></span>)&#123;</span><br><span class="line">		<span class="comment">//方法体（可用this.xxx调用类参数)</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取类对象</span></span><br><span class="line"><span class="keyword">const</span> c1=<span class="keyword">new</span> 类名(构造参数) <span class="comment">//将自动执行构造函数并返回一个对象</span></span><br><span class="line">c1.<span class="title function_">method1</span>() <span class="comment">//调用自定义方法</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="类的继承"><a href="#类的继承" class="headerlink" title="类的继承"></a>类的继承</h1><p>声明类时用<code>extends</code>继承父类，派生出子类</p>
+<p>super传入父类构造方法中的参数，可从子类的构造参数中获取，会顺带生成this，故必须在调用this前用上<code>super()</code></p>
+<p>（补充：在子类非构造方法中也可以用<code>super.方法名()</code>调用父类原型方法并加以修改，但此时this仍然会指向子类）</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">B</span> <span class="keyword">extends</span> <span class="title class_ inherited__">A</span>&#123;</span><br><span class="line">	<span class="title function_">constructor</span>(<span class="params">name,link,age</span>)&#123;</span><br><span class="line">		<span class="variable language_">super</span>(name,link,age)</span><br><span class="line">		<span class="comment">//this.name=name //父类已有的属性可省略绑定</span></span><br><span class="line">		<span class="comment">//this.link=link //父类已有的属性可省略绑定</span></span><br><span class="line">		<span class="variable language_">this</span>.<span class="property">age</span>=age</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h1><p><del>（类似java的lambda表达式）</del><br>单表达式：<br><strong><code>const var1= (参数) =&gt; 表达式</code></strong></p>
+<p>最终var1将被赋值为表达式的返回值，参数为右边表达式可调用的传入参数<br>当只有一个参数时，括号可省略</p>
+<p>⚠️箭头函数不可用arguments</p>
+<p>多语句：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> var2=（参数) =&gt; &#123; </span><br><span class="line">		语句</span><br><span class="line">		<span class="keyword">return</span> 返回值;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<p>同单表达式，但语句<strong>需要用{}包裹并手动return返回值</strong></p>
+<hr>
+<p>参考资料：</p>
+<ol>
+<li><a href="https://www.bilibili.com/video/BV1zm4y1y7R9">20分钟学会ES6之核心语法 前端开发速成必看 干货满满无废话</a></li>
+<li><a href="https://es6.ruanyifeng.com/#docs/array#Array-from">数组的扩展 - ECMAScript 6入门</a></li>
+<li><a href="https://blog.csdn.net/fungleo/article/details/54931379">javascript 数组以及对象的深拷贝（复制数组或复制对象）的方法_js深拷贝数组-CSDN博客</a></li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/super">super - JavaScript | MDN</a></li>
+<li><a href="https://segmentfault.com/a/1190000038869766">JavaScript中的回调函数看这篇就够了 - 疯狂的技术宅 - SegmentFault 思否</a></li>
+</ol>
+]]></content>
+      <categories>
+        <category>技术学习</category>
+        <category>编程</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+        <tag>学习</tag>
+        <tag>技术分享</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/posts/2024/03/28/16107/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>hexo每次远程部署会变动文章更新日期解决方案</title>
+    <url>/posts/2024/07/24/38823/</url>
+    <content><![CDATA[<h1 id="踩坑"><a href="#踩坑" class="headerlink" title="踩坑"></a>踩坑</h1><p>配置了<code>update_option: mtime</code>和<code>order_by: -updated</code>，实现文章按最后修改日期排序，但每次部署完发现都会有个hello world不合时宜地出现在最上面😓 打开发现大部分文章的修改日期都变成了同一个——部署的日期，而自己加了updated参数的不受影响，疑似git本身对文件修改日期的判定机制导致。</p>
+<p>于是乎，给每个文章都添加了updated参数，例如</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: Hello World</span><br><span class="line">date: 2023-01-01 00:00:00</span><br><span class="line"><span class="section">updated: 2023-02-01 00:00:00</span></span><br><span class="line"><span class="section">---</span></span><br></pre></td></tr></table></figure>
+
+<p>勉强解决，但每次都手动添加太麻烦了。</p>
+<h1 id="完美解决方案"><a href="#完美解决方案" class="headerlink" title="完美解决方案"></a>完美解决方案</h1><h2 id="修改格式模板"><a href="#修改格式模板" class="headerlink" title="修改格式模板"></a>修改格式模板</h2><p>在文章模板中添加updated参数到Front-matter（修改&#x2F;scaffolds&#x2F;post.md），如下</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">date: &#123;&#123; date &#125;&#125;</span><br><span class="line">tags:</span><br><span class="line"><span class="section">updated: &#123;&#123; date &#125;&#125;</span></span><br><span class="line"><span class="section">---</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="在自动部署脚本加上对时间的矫正"><a href="#在自动部署脚本加上对时间的矫正" class="headerlink" title="在自动部署脚本加上对时间的矫正"></a>在自动部署脚本加上对时间的矫正</h2><p>加上一行<code>git ls-files -z | while read -d &#39;&#39; path; do touch -d &quot;\$(git log -1 --format=&quot;@%ct&quot; &quot;\$path&quot;)&quot; &quot;\$path&quot;; done</code>来矫正修改日期即可。</p>
+<p>已加入<a href="https://blog.binarydev.top/posts/2024/04/13/27508/">本站自动部署workflow | 无愚の日记 (binarydev.top)</a>)，可参考。</p>
+<p>参考文章：</p>
+<p><a href="https://www.cnblogs.com/yyyzyyyz/p/15792199.html">hexo自动更新文章修改时间 - yyyz - 博客园 (cnblogs.com)</a></p>
+<p><a href="https://unparalleled-calvin.github.io/Blog/2022/10/14/Hexo-GitHub-Action-CI%E9%85%8D%E7%BD%AE(%E8%A7%A3%E5%86%B3%E6%96%87%E7%AB%A0%E4%BF%AE%E6%94%B9%E6%97%B6%E9%97%B4%E9%97%AE%E9%A2%98)/">Hexo GitHub Action CI配置(解决文章修改时间问题) | Calvin Cui (unparalleled-calvin.github.io)</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>js应在dom加载完成再操作元素</title>
+    <url>/posts/2024/07/24/4187/</url>
+    <content><![CDATA[<p>省流：放到body下面或者套上window.onload()</p>
+<h1 id="情景"><a href="#情景" class="headerlink" title="情景"></a>情景</h1><p>修改flarum时，在后台自定义页眉html代码包了块script写js，通过<code>getElementsByClassName(&#39; &#39;)</code>来获取某指定类的标签的对象，遍历检测是否包含特定文本，再修改其文字内容，然而没有生效。💩</p>
+<p>原代码：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;test001&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> elements = <span class="variable language_">document</span>.<span class="title function_">getElementsByClassName</span>(<span class="string">&#x27;TagLabel-name&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 遍历这些元素</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; elements.<span class="property">length</span>; i++) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;test002&quot;</span>);</span><br><span class="line">  <span class="comment">// 获取当前元素的文本内容</span></span><br><span class="line">  <span class="keyword">var</span> text = elements[i].<span class="property">textContent</span> || elements[i].<span class="property">innerText</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 检查文本内容是否为&#x27;Win&#x27;或&#x27;Linux&#x27;</span></span><br><span class="line">  <span class="keyword">if</span> (text === <span class="string">&#x27;Win&#x27;</span> || text === <span class="string">&#x27;Linux&#x27;</span> || text === <span class="string">&#x27;Mac&#x27;</span> || text === <span class="string">&#x27;安卓&#x27;</span>) &#123;</span><br><span class="line">   elements[i].<span class="property">textContent</span>=<span class="string">&#x27;&#x27;</span>; </span><br><span class="line">   <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;test003&quot;</span>);</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>控制台输出结果只有test001，js被执行了，但没有进一步遍历到元素。</p>
+<p>通过一顿chatgpt了解到：这段js执行的时候dom还没加载完全，需要get到的元素还不存在。</p>
+<h1 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h1><p>解决方案是：</p>
+<ol>
+<li>script代码块<strong>放到body下面</strong></li>
+<li>或者加上**window.onload()**来确保dom加载完成。</li>
+</ol>
+<p>后者：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line"><span class="variable language_">window</span>.<span class="property">onload</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line"></span><br><span class="line">………… <span class="comment">//要执行的代码</span></span><br><span class="line"></span><br><span class="line">&#125;;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>总结：我是个不会js的麻瓜😬</p>
+]]></content>
+      <categories>
+        <category>技术分享</category>
+        <category>建站</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+        <tag>踩坑</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>null合并运算符</title>
+    <url>/posts/2023/10/04/16016/</url>
+    <content><![CDATA[<p>由两个问号组成：<code>表达式1??表达式2</code></p>
+<p>当表达式1为null时则使用表达式2，表达式1不为空时选择表达式1</p>
+]]></content>
+      <categories>
+        <category>正则表达式</category>
+        <category>编程</category>
+      </categories>
+      <tags>
+        <tag>学习</tag>
+        <tag>技术分享</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>本站自动部署workflow</title>
+    <url>/posts/2024/04/13/27508/</url>
+    <content><![CDATA[<p>用于github actions自动部署hexo</p>
+<p>非本人原创，网上找来改改就用上了👌</p>
+<p><em>原代码会queued，将ubuntu版本改为latest解决了</em></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">name:</span> <span class="string">Hexo</span> <span class="string">Deploy</span></span><br><span class="line"></span><br><span class="line"><span class="attr">on:</span></span><br><span class="line">  <span class="attr">push:</span></span><br><span class="line">    <span class="attr">branches:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">master</span></span><br><span class="line"></span><br><span class="line"><span class="attr">jobs:</span></span><br><span class="line">  <span class="attr">build:</span></span><br><span class="line">    <span class="attr">runs-on:</span> <span class="string">ubuntu-latest</span></span><br><span class="line">    <span class="attr">if:</span> <span class="string">github.event.repository.owner.id</span> <span class="string">==</span> <span class="string">github.event.sender.id</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">steps:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Checkout</span> <span class="string">source</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">actions/checkout@v2</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">ref:</span> <span class="string">master</span></span><br><span class="line"></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Setup</span> <span class="string">Node.js</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">actions/setup-node@v1</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">node-version:</span> <span class="string">&#x27;12&#x27;</span></span><br><span class="line"></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Setup</span> <span class="string">Hexo</span></span><br><span class="line">        <span class="attr">env:</span></span><br><span class="line">          <span class="attr">ACTION_DEPLOY_KEY:</span> <span class="string">$&#123;&#123;</span> <span class="string">secrets.HEXO_DEPLOY_PRI</span> <span class="string">&#125;&#125;</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">          mkdir -p ~/.ssh/</span></span><br><span class="line"><span class="string">          echo &quot;$ACTION_DEPLOY_KEY&quot; &gt; ~/.ssh/id_rsa</span></span><br><span class="line"><span class="string">          chmod 700 ~/.ssh</span></span><br><span class="line"><span class="string">          chmod 600 ~/.ssh/id_rsa</span></span><br><span class="line"><span class="string">          ssh-keyscan github.com &gt;&gt; ~/.ssh/known_hosts</span></span><br><span class="line"><span class="string">          git config --global user.email &quot;2035650646@qq.com&quot;</span></span><br><span class="line"><span class="string">          git config --global user.name &quot;blankwy&quot;</span></span><br><span class="line"><span class="string">          git ls-files --directory source | while read path; do touch -d &quot;$(git log -1 --format=&#x27;@%ct&#x27; $path)&quot; &quot;$path&quot;; done</span></span><br><span class="line"><span class="string">          npm install hexo-cli -g</span></span><br><span class="line"><span class="string">          npm install</span></span><br><span class="line"><span class="string"></span>      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Deploy</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">          hexo clean</span></span><br><span class="line"><span class="string">          hexo deploy</span></span><br></pre></td></tr></table></figure>
+
+<p><code>HEXO_DEPLOY_PRI</code>为ssh私钥，自行生成并添加到secrets<br>再到deploy key里添加’HEXO_DEPLOY_PUB’，值为ssh公钥</p>
+]]></content>
+      <categories>
+        <category>技术分享</category>
+        <category>建站</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>github</tag>
+        <tag>actions</tag>
+        <tag>自动部署</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>绕过前端登录修复qexo的cdn失效</title>
+    <url>/posts/2025/07/05/7957/</url>
+    <content><![CDATA[<p>想写文章的时候打开hexo的后台，发现样式炸了，登录也没反应，f12之后发现js在cdn上的资源无了😨</p>
+<p><a href="https://imgse.com/i/pVKOuZV"><img src="https://s21.ax1x.com/2025/07/06/pVKOuZV.png" alt="pVKOuZV.png"></a></p>
+<p>后台可以更换为其它cdn，但还是得先登录，绕进死胡同了</p>
+<p>于是决定用post请求直接登录绕过前端，再去后台改</p>
+<hr>
+<p>在html源码中找到登录按钮对应的事件</p>
+<p><a href="https://imgse.com/i/pVKOerq"><img src="https://s21.ax1x.com/2025/07/06/pVKOerq.png" alt="pVKOerq.png"></a></p>
+<p>定位到submit方法</p>
+<p><a href="https://imgse.com/i/pVKOZMn"><img src="https://s21.ax1x.com/2025/07/06/pVKOZMn.png" alt="pVKOZMn.png"></a></p>
+<p>记下请求内容与url</p>
+<hr>
+<p>控制台直接post之后被csrf拦下😓需要加在请求头上</p>
+<hr>
+<p>最终js代码：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="variable constant_">USERNAME</span> = <span class="string">&quot;用户名&quot;</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">PASSWORD</span> = <span class="string">&quot;密码&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取CSRF token</span></span><br><span class="line"><span class="keyword">const</span> csrfToken = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;input[name=&quot;csrfmiddlewaretoken&quot;]&#x27;</span>).<span class="property">value</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 手动发起登录请求</span></span><br><span class="line"><span class="title function_">fetch</span>(<span class="string">&quot;/api/auth/&quot;</span>, &#123;</span><br><span class="line">  <span class="attr">method</span>: <span class="string">&quot;POST&quot;</span>,</span><br><span class="line">  <span class="attr">headers</span>: &#123;</span><br><span class="line">    <span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;application/x-www-form-urlencoded&quot;</span>,</span><br><span class="line">    <span class="string">&quot;X-CSRFToken&quot;</span>: csrfToken</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">body</span>: <span class="string">`username=<span class="subst">$&#123;<span class="built_in">encodeURIComponent</span>(USERNAME)&#125;</span>&amp;password=<span class="subst">$&#123;<span class="built_in">encodeURIComponent</span>(PASSWORD)&#125;</span>`</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>在控制台输入后回车，登录成功</p>
+<p><a href="https://imgse.com/i/pVKOmq0"><img src="https://s21.ax1x.com/2025/07/06/pVKOmq0.png" alt="pVKOmq0.png"></a></p>
+<p>成功登录后台，然而后台js也是崩的，改不了，但注意到里面还有unpkg和jsdelivr的cdn可以选</p>
+<p><a href="https://imgse.com/i/pVKXU6s"><img src="https://s21.ax1x.com/2025/07/06/pVKXU6s.png" alt="pVKXU6s.png"></a></p>
+<p>来到绑定qexo的MongoDB，将对应cdn地址的数据改为unpkg的url</p>
+<p><a href="https://imgse.com/i/pVKXaXn"><img src="https://s21.ax1x.com/2025/07/06/pVKXaXn.md.png" alt="pVKXaXn.md.png"></a></p>
+<p><a href="https://imgse.com/i/pVKX000"><img src="https://s21.ax1x.com/2025/07/06/pVKX000.jpg" alt="pVKX000.jpg"></a></p>
+<p>再次刷新后台，成功</p>
+<p><a href="https://imgse.com/i/pVKXwmq"><img src="https://s21.ax1x.com/2025/07/06/pVKXwmq.jpg" alt="pVKXwmq.jpg"></a></p>
+]]></content>
+      <categories>
+        <category>踩坑日记</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+        <tag>学习</tag>
+        <tag>技术分享</tag>
+        <tag>踩坑</tag>
+        <tag>hexo</tag>
+        <tag>建站</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>表达式中&amp;与&amp;&amp;区别</title>
+    <url>/posts/2023/10/01/24250/</url>
+    <content><![CDATA[<p>单个&amp;时，即使左边已经不成立依旧会继续判断右边的表达式</p>
+<p>使用&amp;&amp;时，从左到右判断一旦遇到不成立的值将停止继续执行右边表达式</p>
+<p>事例【java】:</p>
+<p>在判断一个可能为null的字符串的内容是否为空时：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String a=<span class="literal">null</span>;</span><br><span class="line"><span class="keyword">if</span>(a!=<span class="literal">null</span>&amp;a.isEmpty())</span><br></pre></td></tr></table></figure>
+
+
+<p>左边已判断a!&#x3D;null不成立，依旧会执行右边isempty，但a是null无法执行方法，所以会导致空指针异常</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String a=<span class="literal">null</span>;</span><br><span class="line"><span class="keyword">if</span>(a!=<span class="literal">null</span>&amp;&amp;a.isEmpty())</span><br></pre></td></tr></table></figure>
+
+<p>左边判断不成立后，右边不会执行</p>
+<p>左边成立后右边继续判断直到全部成立再执行操作</p>
+<p>正常运行</p>
+<p>“|”与“||”等其它正则运算符同理🙂</p>
+]]></content>
+      <categories>
+        <category>正则表达式</category>
+        <category>编程</category>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>学习</tag>
+        <tag>技术分享</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>连接mysql地址为何不用localhost</title>
+    <url>/posts/2023/10/01/34687/</url>
+    <content><![CDATA[<p>在连接mysql时，数据库地址选项看似填<code>localhost</code>和<code>127.0.0.1</code>都可以，实则会造成别的问题<br>在部分系统（尤其是win！）中，连接localhost需要对dns先解析（可能因此导致错误），系统还需要判断ipv4&#x2F;ipv6（拖慢查询速度）<br>因此，用localhost不仅可能导致很多地方出现sql连接错误，整站速度也会史诗级削弱</p>
+<p>————😋 ———————<br>在安装群友开源的程序时出现了sql错误，经群友点拨才意识到这个问题<br>在升级flarum时再次遇到sql错误，通过把localhost改为127.0.0.1完美解决</p>
+<p><a href="https://postimg.cc/py1vhCvk"><img src="https://i.postimg.cc/65BpPbms/r-BAAdm-Ua-JXWAQyhi-AAGc-Hg-ZUho-E170.jpg" alt="r-BAAdm-Ua-JXWAQyhi-AAGc-Hg-ZUho-E170.jpg"></a></p>
+<p><a href="https://postimg.cc/sM5CLRh0"><img src="https://i.postimg.cc/T342pdYG/r-BAAdm-Ua-JXa-AOp-LLAACr-X3oix-Wg970.jpg" alt="r-BAAdm-Ua-JXa-AOp-LLAACr-X3oix-Wg970.jpg"></a></p>
+<p><a href="https://postimg.cc/1nCkFmk4"><img src="https://i.postimg.cc/5ybbZjp5/r-BAAdm-Ua-JXe-Ab-Je-PAACnv9pz37o973.jpg" alt="r-BAAdm-Ua-JXe-Ab-Je-PAACnv9pz37o973.jpg"></a></p>
+]]></content>
+      <categories>
+        <category>踩坑</category>
+        <category>php</category>
+        <category>sql</category>
+      </categories>
+      <tags>
+        <tag>学习</tag>
+        <tag>技术分享</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>频率分布直方图manim动画源码</title>
+    <url>/posts/2025/01/27/27492/</url>
+    <content><![CDATA[<p>b站视频动画manim代码开源</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> manim <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">main</span>(<span class="title class_ inherited__">Scene</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">construct</span>(<span class="params">self</span>):</span><br><span class="line">        chart = BarChart(</span><br><span class="line">            values=[<span class="number">0.010</span>,<span class="number">0.015</span>,<span class="number">0.035</span>,<span class="number">0.030</span>,<span class="number">0.010</span>],</span><br><span class="line">            y_range=[<span class="number">0</span>,<span class="number">0.050</span>,<span class="number">0.010</span>],</span><br><span class="line">            bar_width=<span class="number">1</span>,</span><br><span class="line">            x_axis_config=&#123;<span class="string">&quot;include_numbers&quot;</span>: <span class="literal">False</span>,<span class="string">&quot;include_tip&quot;</span>:<span class="literal">True</span>&#125;,</span><br><span class="line">            y_axis_config=&#123;<span class="string">&quot;include_numbers&quot;</span>: <span class="literal">False</span>,<span class="string">&quot;include_tip&quot;</span>:<span class="literal">True</span>&#125;,</span><br><span class="line">  </span><br><span class="line">        ).to_edge(RIGHT)</span><br><span class="line"></span><br><span class="line">        ylabel=Text(<span class="string">&quot;频率/组距&quot;</span>,font_size=<span class="number">20</span>).next_to(chart.get_y_axis(),RIGHT+UP)</span><br><span class="line">        xlabel=Text(<span class="string">&quot;x&quot;</span>,font_size=<span class="number">20</span>).next_to(chart.get_x_axis(),RIGHT+DOWN)</span><br><span class="line">        <span class="variable language_">self</span>.add(ylabel,xlabel)</span><br><span class="line">  </span><br><span class="line">        dot_positions = [<span class="number">0.5</span>,<span class="number">1.5</span>, <span class="number">2.5</span>,<span class="number">3.5</span>, <span class="number">4.5</span>]</span><br><span class="line">        middle_dots=[Dot(chart.coords_to_point(position,<span class="number">0</span>,<span class="number">0</span>)) <span class="keyword">for</span> position <span class="keyword">in</span> dot_positions]</span><br><span class="line"></span><br><span class="line">        c_bar_lbls = chart.get_bar_labels(</span><br><span class="line">            color=WHITE, label_constructor=MathTex, font_size=<span class="number">36</span></span><br><span class="line">        )</span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">        <span class="variable language_">self</span>.add(chart,c_bar_lbls)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">#取中</span></span><br><span class="line">        dot_positions = [<span class="number">5</span>, <span class="number">15</span>, <span class="number">25</span>, <span class="number">35</span>, <span class="number">45</span>]</span><br><span class="line">        middle_dots = [Dot(chart.coords_to_point(position/<span class="number">10</span>, <span class="number">0</span>, <span class="number">0</span>)) <span class="keyword">for</span> position <span class="keyword">in</span> dot_positions]</span><br><span class="line">        label_md = [Text(<span class="built_in">str</span>(point_num),font=<span class="string">&quot;Sans Serif&quot;</span>,font_size=<span class="number">20</span>).next_to(md, DOWN) <span class="keyword">for</span> md, point_num <span class="keyword">in</span> <span class="built_in">zip</span>(middle_dots, dot_positions)]</span><br><span class="line">        <span class="variable language_">self</span>.play(FadeIn(*middle_dots),FadeIn(*label_md)) <span class="comment">#取每组中点</span></span><br><span class="line">        <span class="variable language_">self</span>.wait()</span><br><span class="line">        mdlist=[]</span><br><span class="line">        mdTransform=[]</span><br><span class="line">        <span class="keyword">for</span> i,md_input <span class="keyword">in</span> <span class="built_in">enumerate</span>(dot_positions):</span><br><span class="line">            <span class="keyword">if</span> i==<span class="number">0</span>:</span><br><span class="line"></span><br><span class="line">                mdtext=MathTex(<span class="string">f&quot;m_<span class="subst">&#123;i+<span class="number">1</span>&#125;</span>=<span class="subst">&#123;md_input&#125;</span>&quot;</span>,color=RED).to_edge(UL)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                mdtext=MathTex(<span class="string">f&quot;m_<span class="subst">&#123;i+<span class="number">1</span>&#125;</span>=<span class="subst">&#123;md_input&#125;</span>&quot;</span>,color=RED).next_to(mdlist[i-<span class="number">1</span>],DOWN)</span><br><span class="line">            mdlist.append(mdtext)</span><br><span class="line">            mdTransform.append(FadeTransform(label_md[i],mdlist[i]))</span><br><span class="line">        valuelist=[]</span><br><span class="line">        valueTransform=[]</span><br><span class="line">        <span class="keyword">for</span> i1,value <span class="keyword">in</span> <span class="built_in">enumerate</span>(chart.values):<span class="comment">#再取它们的频率</span></span><br><span class="line">            valuetext=MathTex(<span class="string">f&quot;f_<span class="subst">&#123;i1+<span class="number">1</span>&#125;</span>=<span class="subst">&#123;value&#125;</span>&quot;</span>)</span><br><span class="line">            <span class="keyword">if</span> i1==<span class="number">0</span>:</span><br><span class="line">                valuetext=MathTex(<span class="string">f&quot;f_<span class="subst">&#123;i1+<span class="number">1</span>&#125;</span>=<span class="subst">&#123;value&#125;</span>&quot;</span>,<span class="string">r&quot; \times 10&quot;</span>,color=YELLOW).next_to(mdlist[<span class="number">4</span>],DOWN,aligned_edge=LEFT)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                valuetext=MathTex(<span class="string">f&quot;f_<span class="subst">&#123;i1+<span class="number">1</span>&#125;</span>=<span class="subst">&#123;value&#125;</span>&quot;</span>,<span class="string">r&quot; \times 10&quot;</span>,color=YELLOW).next_to(valuelist[i1-<span class="number">1</span>],DOWN,aligned_edge=LEFT)</span><br><span class="line">  </span><br><span class="line">            valuelist.append(valuetext)</span><br><span class="line">            valueTransform.append(FadeTransform(c_bar_lbls[i1],valuelist[i1]))</span><br><span class="line">        labelGroup=AnimationGroup(mdTransform,valueTransform)</span><br><span class="line">        <span class="variable language_">self</span>.play(labelGroup)</span><br><span class="line">        <span class="variable language_">self</span>.wait()</span><br><span class="line">        <span class="comment">#众数</span></span><br><span class="line">        hightmost=Circumscribe(chart.bars[<span class="number">2</span>],Rectangle)</span><br><span class="line">        <span class="variable language_">self</span>.play(hightmost,Wiggle(valuelist[<span class="number">2</span>]))<span class="comment">#频率最高的组</span></span><br><span class="line">        <span class="variable language_">self</span>.play(Circumscribe(mdlist[<span class="number">2</span>],Rectangle))<span class="comment">#的中点即为众数</span></span><br><span class="line">        <span class="variable language_">self</span>.wait()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">        <span class="comment">#平均数</span></span><br><span class="line">        average_formula=MathTex(<span class="string">r&quot;\overline&#123;x&#125; = \sum_&#123;n&#125;^&#123;i=1&#125; &quot;</span>,<span class="string">r&quot;&#123;m_&#123;i&#125;&#125;&quot;</span>,<span class="string">r&quot; f_&#123;i&#125; &quot;</span>,<span class="string">r&quot; = &#123;m_1&#125; *f_1+&#123;m_2&#125; *f_2+\dots +&#123;m_n&#125; *f_n&quot;</span>).to_edge(LEFT+UP)</span><br><span class="line">        average_formula[<span class="number">1</span>].set_color(RED)</span><br><span class="line">        average_formula[<span class="number">2</span>].set_color(YELLOW)<span class="comment">#中点分别与其频率相乘再求和即为平均数</span></span><br><span class="line">        <span class="variable language_">self</span>.play(AnimationGroup((FadeTransform(mdlist[i0],average_formula) <span class="keyword">for</span> i0,mm <span class="keyword">in</span> <span class="built_in">enumerate</span>(mdlist)),(FadeTransform(valuelist[i01],average_formula) <span class="keyword">for</span> i01,mm1 <span class="keyword">in</span> <span class="built_in">enumerate</span>(valuelist))))</span><br><span class="line">        <span class="variable language_">self</span>.wait()</span><br><span class="line">        <span class="variable language_">self</span>.play(FadeOut(average_formula,*middle_dots,*label_md))</span><br><span class="line">        <span class="variable language_">self</span>.wait()</span><br><span class="line"></span><br><span class="line">        <span class="comment">#百分位数</span></span><br><span class="line">        <span class="comment">#以第40百分位数为例</span></span><br><span class="line">        <span class="comment">#将各组频率依次累加</span></span><br><span class="line">        sumFrequence1=MathTex(<span class="string">f&quot;f_1+f_2=0.25&quot;</span>).to_edge(LEFT+UP)</span><br><span class="line">        sumFrequence2=MathTex(<span class="string">f&quot;f_1+f_2+f_3=0.60&quot;</span>).next_to(sumFrequence1,DOWN)</span><br><span class="line">        <span class="variable language_">self</span>.play(FadeIn(sumFrequence1),FadeIn(sumFrequence2))</span><br><span class="line">        <span class="comment">#用面积和代表频率频率，40%在0.25到0.60之间，故其对应的数据在第三组内，设其为b</span></span><br><span class="line">        fortynumdot=Dot(chart.coords_to_point(<span class="number">2.4</span>,<span class="number">0</span>,<span class="number">0</span>),color=RED)</span><br><span class="line">        fdotlabel=Text(<span class="string">&quot;b&quot;</span>,font_size=<span class="number">25</span>,color=RED).next_to(fortynumdot,DOWN)</span><br><span class="line">        <span class="variable language_">self</span>.play(FadeIn(fortynumdot,fdotlabel))</span><br><span class="line">        <span class="variable language_">self</span>.wait()</span><br><span class="line">        squarepart=Polygon(chart.coords_to_point(<span class="number">2</span>,<span class="number">0</span>,<span class="number">0</span>),chart.coords_to_point(<span class="number">2.4</span>,<span class="number">0</span>,<span class="number">0</span>),chart.coords_to_point(<span class="number">2.4</span>,<span class="number">0.035</span>,<span class="number">0</span>),chart.coords_to_point(<span class="number">2</span>,<span class="number">0.035</span>,<span class="number">0</span>),color=RED_B).align_to(chart.bars[<span class="number">2</span>],LEFT+UP)</span><br><span class="line">        <span class="variable language_">self</span>.play(FadeIn(squarepart))</span><br><span class="line">        <span class="variable language_">self</span>.wait()<span class="comment">#由该点与原矩形左侧部分围成矩形</span></span><br><span class="line">        sb=MathTex(<span class="string">r&quot;S_&#123;b&#125; = (b-20)\times 0.035&quot;</span>).next_to(sumFrequence2,DOWN,aligned_edge=LEFT)</span><br><span class="line">        <span class="variable language_">self</span>.play(FadeIn(sb))</span><br><span class="line">        <span class="comment">#计算其面积（也就是频率）</span></span><br><span class="line">        sformula=MathTex(<span class="string">r&quot;\frac&#123;S_&#123;b&#125; + f_&#123;1&#125; +f_&#123;2&#125;&#125;&#123;S_&#123;all&#125;&#125; = P&quot;</span>).next_to(sb,DOWN)</span><br><span class="line">        <span class="variable language_">self</span>.play(FadeIn(sformula))</span><br><span class="line">        <span class="comment">#其占总面积的比值即为你要求的百分比</span></span><br><span class="line">        <span class="comment">#总面积等于总频率即为1</span></span><br><span class="line">        sformula1=MathTex(<span class="string">r&quot;\frac&#123;S_&#123;b&#125; + f_&#123;1&#125; +f_&#123;2&#125;&#125;&#123;1&#125; = P&quot;</span>).next_to(sb,DOWN)</span><br><span class="line">        <span class="variable language_">self</span>.play(FadeTransform(sformula,sformula1))</span><br><span class="line">        <span class="comment">#本题要求的是四十百分位，故P为0.4</span></span><br><span class="line">        sformula2=MathTex(<span class="string">r&quot;\frac&#123;S_&#123;b&#125; + f_&#123;1&#125; +f_&#123;2&#125;&#125;&#123;1&#125; = 0.4&quot;</span>).next_to(sb,DOWN)</span><br><span class="line">        <span class="variable language_">self</span>.play(FadeTransform(sformula1,sformula2))</span><br><span class="line">        <span class="comment">#最后解出b≈24.28</span></span><br><span class="line">        bfinal=MathTex(<span class="string">r&quot;b\approx 24.28&quot;</span>).next_to(sformula2,DOWN)</span><br><span class="line">        <span class="variable language_">self</span>.play(FadeIn(bfinal))</span><br><span class="line">        <span class="comment">#即第40百分位数约为24.28</span></span><br><span class="line">        <span class="variable language_">self</span>.play(Circumscribe(bfinal,Rectangle))</span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">        <span class="comment">#中位数</span></span><br><span class="line">        <span class="comment">#同理，第50百分位数即为中位数</span></span><br><span class="line">        mediandot=Dot(chart.coords_to_point(<span class="number">2.6</span>,<span class="number">0</span>,<span class="number">0</span>),color=GREEN)</span><br><span class="line">        mdotlabel=Text(<span class="string">&quot;m&quot;</span>,font_size=<span class="number">25</span>,color=GREEN).next_to(mediandot,DOWN)</span><br><span class="line">        <span class="variable language_">self</span>.play(FadeIn(mediandot,mdotlabel))</span><br><span class="line">        <span class="variable language_">self</span>.wait()</span><br><span class="line">        squarepart1=Polygon(chart.coords_to_point(<span class="number">2</span>,<span class="number">0</span>,<span class="number">0</span>),chart.coords_to_point(<span class="number">2.6</span>,<span class="number">0</span>,<span class="number">0</span>),chart.coords_to_point(<span class="number">2.6</span>,<span class="number">0.035</span>,<span class="number">0</span>),chart.coords_to_point(<span class="number">2</span>,<span class="number">0.035</span>,<span class="number">0</span>),color=GREEN).align_to(chart.bars[<span class="number">2</span>],LEFT+UP)</span><br><span class="line">        sm=MathTex(<span class="string">r&quot;S_&#123;m&#125; = (m-20)\times 0.035&quot;</span>).next_to(bfinal,DOWN,aligned_edge=LEFT)</span><br><span class="line">        <span class="variable language_">self</span>.play(FadeIn(squarepart1),FadeIn(sm))</span><br><span class="line">        <span class="variable language_">self</span>.wait()</span><br><span class="line">        sformula3=MathTex(<span class="string">r&quot;\frac&#123;S_&#123;m&#125; + f_&#123;1&#125; +f_&#123;2&#125;&#125;&#123;1&#125; = 0.5&quot;</span>).next_to(sm,DOWN)</span><br><span class="line">        <span class="variable language_">self</span>.play(FadeIn(sformula3))</span><br><span class="line">        <span class="comment">#最后解出m≈27.14</span></span><br><span class="line">        mfinal=MathTex(<span class="string">r&quot;m\approx 27.14&quot;</span>).next_to(sformula3,DOWN)</span><br><span class="line">        <span class="variable language_">self</span>.play(FadeIn(mfinal))</span><br><span class="line">        <span class="comment">#即中位数约为27.14</span></span><br><span class="line">        <span class="variable language_">self</span>.play(Circumscribe(mfinal,Rectangle))</span><br><span class="line">        <span class="variable language_">self</span>.wait()</span><br><span class="line">        <span class="comment">#搞定</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>技术分享</category>
+        <category>数学</category>
+        <category>学习</category>
+        <category>开源</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>manim</tag>
+        <tag>动画</tag>
+        <tag>频率分布直方图</tag>
+        <tag>样本估计总体</tag>
+        <tag>视频</tag>
+        <tag>开源</tag>
+      </tags>
+  </entry>
+</search>
