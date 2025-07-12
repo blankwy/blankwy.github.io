@@ -44,11 +44,11 @@ social:
 # --------------------------------------
 
 # Favicon（網站圖標）
-favicon: /img/favicon.png
+favicon: https://q.qlogo.cn/g?b=qq&nk=2035650646&s=100
 
 # Avatar (頭像)
 avatar:
-  img: /img/favicon.png
+  img: https://q.qlogo.cn/g?b=qq&nk=2035650646&s=100
   effect: false
 
 # Disable all banner image
