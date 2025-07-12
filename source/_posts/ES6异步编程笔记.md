@@ -1,7 +1,6 @@
 ---
 abbrlink: ''
-categories:
-- - 技术学习
+categories: []
 date: '2025-07-13T00:55:50.178636+08:00'
 tags:
 - JavaScript
@@ -9,7 +8,7 @@ tags:
 - 学习
 - 技术分享
 title: ES6异步编程笔记
-updated: '2025-07-13T00:56:17.564+08:00'
+updated: '2025-07-13T00:55:50.178636+08:00'
 ---
 # 计时器
 
