@@ -1,6 +1,6 @@
 ---
 abbrlink: ''
-categories: []
+categories: [踩坑日记]
 date: '2024-07-25T00:13:39.217573+08:00'
 tags: []
 title: hexo每次远程部署会变动文章更新日期解决方案
