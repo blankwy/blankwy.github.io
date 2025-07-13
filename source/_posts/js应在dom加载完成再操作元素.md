@@ -1,8 +1,7 @@
 ---
 abbrlink: ''
 categories:
-- - 技术分享
-- - 建站
+- [技术学习,编程]
 date: '2024-07-24T22:56:56.066795+08:00'
 tags:
 - JavaScript
