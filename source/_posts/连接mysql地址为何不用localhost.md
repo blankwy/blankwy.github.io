@@ -1,13 +1,14 @@
 ---
 abbrlink: ''
 categories:
-- - 踩坑
-- - php
-- - sql
+- 踩坑日记
 date: '2023-10-02T12:02:33.533126+08:00'
 tags:
 - 技术分享
 - 学习
+- php
+- sql
+- 建站
 title: 连接mysql地址为何不用localhost
 updated: '2025-04-06T12:10:42.672+08:00'
 ---
