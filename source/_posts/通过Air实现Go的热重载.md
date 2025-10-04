@@ -12,7 +12,7 @@ updated: '2025-10-05T01:00:57.578+08:00'
 ---
 花一周学了Go之后就上手写后端了，然而gin不带热重载，饱受ctrl+c ，go run 折磨，才发现了Air。
 
-[image.png](https://postimg.cc/xNyT5rWL)
+![image.png](https://postimg.cc/xNyT5rWL)
 
 # 安装
 
