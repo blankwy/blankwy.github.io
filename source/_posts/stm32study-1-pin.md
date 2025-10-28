@@ -8,7 +8,7 @@ tags:
 - 学习
 - stm32
 - 单片机
-title: GPIO与三大基本引脚 - STM32学习笔记
+title: STM32核心引脚与GPIO - STM32学习笔记
 updated: '2025-10-28T15:02:57.289+08:00'
 ---
 # 电源引脚
