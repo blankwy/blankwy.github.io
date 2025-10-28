@@ -1,7 +1,7 @@
 ---
 abbrlink: stm32-basepin-and-gpio
 categories:
-- - [技术学习 - 硬件]
+- - [技术学习,硬件]
 date: '2025-10-28T15:02:52.557356+08:00'
 tags:
 - 编程
