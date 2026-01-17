@@ -1,0 +1,255 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>C#初探：DI注入及其生命周期 | 无愚的日记</title><meta name="author" content="BinaryDev"><meta name="copyright" content="BinaryDev"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="在 C#.NET 中，依赖注入（Dependency Injection，简称 DI） 是一种设计模式，用于实现控制反转（Inversion of Control，IoC），以降低代码耦合、提高可测试性和可维护性。  简而言之，就是将对象实例的创建和依赖管理，托管给IoC容器，再通过注入将实例传递给需要的流程，实现代码的解耦Register 服务注册常用的四种注册方式 12345678&#x2F;&#x2F; **">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C#初探：DI注入及其生命周期">
+<meta property="og:url" content="https://blog.binarydev.top/posts/2026/01/17/csharp-DI1/index.html">
+<meta property="og:site_name" content="无愚的日记">
+<meta property="og:description" content="在 C#.NET 中，依赖注入（Dependency Injection，简称 DI） 是一种设计模式，用于实现控制反转（Inversion of Control，IoC），以降低代码耦合、提高可测试性和可维护性。  简而言之，就是将对象实例的创建和依赖管理，托管给IoC容器，再通过注入将实例传递给需要的流程，实现代码的解耦Register 服务注册常用的四种注册方式 12345678&#x2F;&#x2F; **">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://q.qlogo.cn/g?b=qq&nk=2035650646&s=100">
+<meta property="article:published_time" content="2026-01-17T06:39:21.268Z">
+<meta property="article:modified_time" content="2026-01-17T06:39:25.416Z">
+<meta property="article:author" content="BinaryDev">
+<meta property="article:tag" content="编程">
+<meta property="article:tag" content="学习">
+<meta property="article:tag" content="C#">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://q.qlogo.cn/g?b=qq&nk=2035650646&s=100"><link rel="shortcut icon" href="https://q.qlogo.cn/g?b=qq&nk=2035650646&s=100"><link rel="canonical" href="https://blog.binarydev.top/posts/2026/01/17/csharp-DI1/index.html"><link rel="preconnect" href="//unpkg.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://unpkg.com/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: BinaryDev","link":"链接: ","source":"来源: 无愚的日记","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'mediumZoom',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://unpkg.com/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'C#初探：DI注入及其生命周期',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-01-17 14:39 14:39:25'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/config/css/custom-butterfly.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://q.qlogo.cn/g?b=qq&amp;nk=2035650646&amp;s=100" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">14</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" target="_blank" rel="noopener external nofollow noreferrer" href="https://binarydev.top"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/talks"><i class="fa-fw fa fa-commenting faa-wrench"></i><span> 说说</span></a></div><div class="menus_item"><a class="site-page" href="/projects/"><i class="fa-fw fas fa-diagram-project"></i><span> 项目</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-list"></i><span> 了解我</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于页</span></a></li><li><a class="site-page child" target="_blank" rel="noopener external nofollow noreferrer" href="https://binarydev.top"><i class="fa-fw fas fa-home"></i><span> 个人主页</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="无愚的日记"><span class="site-name">无愚的日记</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" target="_blank" rel="noopener external nofollow noreferrer" href="https://binarydev.top"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/talks"><i class="fa-fw fa fa-commenting faa-wrench"></i><span> 说说</span></a></div><div class="menus_item"><a class="site-page" href="/projects/"><i class="fa-fw fas fa-diagram-project"></i><span> 项目</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-list"></i><span> 了解我</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于页</span></a></li><li><a class="site-page child" target="_blank" rel="noopener external nofollow noreferrer" href="https://binarydev.top"><i class="fa-fw fas fa-home"></i><span> 个人主页</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">C#初探：DI注入及其生命周期<a class="post-edit-link" href="https://github.com/blankwy/blankwy.github.io/tree/master/source/_posts/C#初探：DI注入及其生命周期.md" rel="external nofollow noreferrer" title="编辑" target="_blank"><i class="fas fa-pencil-alt"></i></a></h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-01-17T06:39:21.268Z" title="发表于 2026-01-17 14:39 14:39:21">2026-01-17 14:39</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-01-17T06:39:25.416Z" title="更新于 2026-01-17 14:39 14:39:25">2026-01-17 14:39</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/">技术学习</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/%E7%BC%96%E7%A8%8B/">编程</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="C#初探：DI注入及其生命周期"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><blockquote>
+<p>在 <code>C#.NET</code> 中，依赖注入（<code>Dependency Injection</code>，简称 <code>DI</code>） 是一种设计模式，用于实现控制反转（<code>Inversion of Control，IoC</code>），以降低代码耦合、提高可测试性和可维护性。</p>
+</blockquote>
+<h3 id="简而言之，就是将对象实例的创建和依赖管理，托管给IoC容器，再通过注入将实例传递给需要的流程，实现代码的解耦"><a href="#简而言之，就是将对象实例的创建和依赖管理，托管给IoC容器，再通过注入将实例传递给需要的流程，实现代码的解耦" class="headerlink" title="简而言之，就是将对象实例的创建和依赖管理，托管给IoC容器，再通过注入将实例传递给需要的流程，实现代码的解耦"></a>简而言之，就是将对象实例的创建和依赖管理，托管给IoC容器，再通过注入将实例传递给需要的流程，实现代码的解耦</h3><h1 id="Register-服务注册"><a href="#Register-服务注册" class="headerlink" title="Register 服务注册"></a>Register 服务注册</h1><p>常用的四种注册方式</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// **1** 实现-接口</span></span><br><span class="line">  Add&#123;LIFETIME&#125;&lt;&#123;SERVICE&#125;, &#123;IMPLEMENTATION&#125;&gt;()</span><br><span class="line"><span class="comment">//**2** 实现</span></span><br><span class="line">  Add&#123;LIFETIME&#125;&lt;&#123;SERVICE&#125;,&gt;()</span><br><span class="line"><span class="comment">//**3**  对象</span></span><br><span class="line">  AddSingleton&lt;&#123;SERVICE&#125;&gt;(<span class="keyword">new</span> &#123;IMPLEMENTATION&#125;)</span><br><span class="line"><span class="comment">//**4**  工厂模式</span></span><br><span class="line">  Add&#123;LIFETIME&#125;&lt;&#123;SERVICE&#125;&gt;(sp =&gt; <span class="keyword">new</span> &#123;IMPLEMENTATION&#125;)</span><br></pre></td></tr></table></figure>
+
+<h1 id="Inject-服务注入"><a href="#Inject-服务注入" class="headerlink" title="Inject 服务注入"></a>Inject 服务注入</h1><p>对于接口IA，具有其实现A，在Services注册后</p>
+<h2 id="Constructor-Injection-构造函数注入"><a href="#Constructor-Injection-构造函数注入" class="headerlink" title="Constructor Injection 构造函数注入"></a>Constructor Injection 构造函数注入</h2><p>可以在类中声明服务类A的成员，并在构造参数中注入</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">C</span>&#123;</span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">readonly</span> IA _A;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">C</span>(<span class="params">IA A</span>)</span>&#123;</span><br><span class="line">    _A=A;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Property-Injection-属性注入"><a href="#Property-Injection-属性注入" class="headerlink" title="Property Injection 属性注入"></a>Property Injection 属性注入</h2><p>声明公共属性，再添加[Inject]特性</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">Inject</span>]</span><br><span class="line"><span class="keyword">public</span> IA _A &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Method-Injection-方法注入"><a href="#Method-Injection-方法注入" class="headerlink" title="Method Injection 方法注入"></a>Method Injection 方法注入</h2><p>通过声明方法参数注入，会在方法被调用时生成实例</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">D</span>(<span class="params">IA A</span>)</span>&#123;</span><br><span class="line">   ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Interface-Injection-接口注入"><a href="#Interface-Injection-接口注入" class="headerlink" title="Interface Injection 接口注入"></a>Interface Injection 接口注入</h2><p><em>声明一个接口并注入方法，再实现接口</em></p>
+<p><em>较少使用</em></p>
+<h1 id="LifeTime-生命周期"><a href="#LifeTime-生命周期" class="headerlink" title="LifeTime 生命周期"></a>LifeTime 生命周期</h1><h2 id="Scoped"><a href="#Scoped" class="headerlink" title="Scoped"></a><strong>Scoped</strong></h2><p>即作用域， 最常用的一个，可在<strong>同一作用域</strong>（一般同一个Http请求）内共享<strong>同一实例</strong>，无论是在Controller&#x2F;Service还是PageModel注入多少次，使用的都是同一个实例，并随着请求的结束而销毁。</p>
+<p>常用于DbContext、与用户行为有关服务（如Jwt）</p>
+<p>注册方式：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">services.AddScoped&lt;ExampleService, ExampleService&gt;();</span><br></pre></td></tr></table></figure>
+
+<h2 id="Singleton"><a href="#Singleton" class="headerlink" title="Singleton"></a>Singleton</h2><p>单例模式，整个程序共用一个实例，常驻整个进程。</p>
+<p>注册方式：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">services.AddSingleton&lt;ExampleService, ExampleService&gt;();</span><br></pre></td></tr></table></figure>
+
+<h2 id="Transient"><a href="#Transient" class="headerlink" title="Transient"></a>Transient</h2><p>暂时模式，每次注入行为单独创建实例，并在任务完成后被回收。</p>
+<p>用于轻量化的组件与无状态的处理等（如Identity的EmailSender或简单的逻辑运算服务）</p>
+<p>注册方式：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">services.AddTransient&lt;ExampleService, ExampleService&gt;();</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><ol>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://learn.microsoft.com/zh-cn/dotnet/core/extensions/dependency-injection-usage">在 .NET 中使用依赖项注入</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://segmentfault.com/a/1190000046806379#item-3">C#.NET 依赖注入详解</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/fishandfishand/article/details/140246003">C#面： 依赖注入有哪几种方式？</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/blu_e__heart/article/details/135725766">C#依赖注入3种实现方法</a></li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://blog.binarydev.top">BinaryDev</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://blog.binarydev.top/posts/2026/01/17/csharp-DI1/">https://blog.binarydev.top/posts/2026/01/17/csharp-DI1/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://blog.binarydev.top" target="_blank">无愚的日记</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%BC%96%E7%A8%8B/">编程</a><a class="post-meta__tags" href="/tags/%E5%AD%A6%E4%B9%A0/">学习</a><a class="post-meta__tags" href="/tags/C/">C#</a></div><div class="post_share"><div class="social-share" data-image="https://q.qlogo.cn/g?b=qq&amp;nk=2035650646&amp;s=100" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://unpkg.com/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://unpkg.com/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://i.postimg.cc/gchzJWNL/wechat.jpg" rel="external nofollow noreferrer" target="_blank"><img class="post-qr-code-img" src="https://i.postimg.cc/gchzJWNL/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://i.postimg.cc/7htyfKG9/8704a17fbf186b4f22f7bbeb482dced3.jpg" rel="external nofollow noreferrer" target="_blank"><img class="post-qr-code-img" src="https://i.postimg.cc/7htyfKG9/8704a17fbf186b4f22f7bbeb482dced3.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/posts/2025/10/27/stm32-basepin-and-gpio/" title="STM32核心引脚与GPIO - STM32学习笔记"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">STM32核心引脚与GPIO - STM32学习笔记</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/2025/07/12/5908/" title="ES6异步编程笔记"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-07-12 16:55</div><div class="title">ES6异步编程笔记</div></div></a></div><div><a href="/posts/2025/10/27/stm32-basepin-and-gpio/" title="STM32核心引脚与GPIO - STM32学习笔记"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-10-28 07:02</div><div class="title">STM32核心引脚与GPIO - STM32学习笔记</div></div></a></div><div><a href="/posts/2023/10/01/24250/" title="表达式中&amp;与&amp;&amp;区别"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-02 03:38</div><div class="title">表达式中&amp;与&amp;&amp;区别</div></div></a></div><div><a href="/posts/2025/10/04/57523/" title="通过Air实现Go的热重载"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-10-04 17:00</div><div class="title">通过Air实现Go的热重载</div></div></a></div><div><a href="/posts/2025/07/10/22810/" title="ES6核心特性速通笔记"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-07-11 06:37</div><div class="title">ES6核心特性速通笔记</div></div></a></div><div><a href="/posts/2025/08/09/35667/" title="npm无法加载文件，在此系统上禁止运行脚本。"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-08-09 12:45</div><div class="title">npm无法加载文件，在此系统上禁止运行脚本。</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="giscus-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://q.qlogo.cn/g?b=qq&amp;nk=2035650646&amp;s=100" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">BinaryDev</div><div class="author-info__description">记录技术、学习与生活的地方</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">14</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><a id="card-info-btn" target="_blank" rel="noopener external nofollow noreferrer" href="https://binarydev.top"><i class="fa fa-home"></i><span>主页</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://qm.qq.com/cgi-bin/qm/qr?k=NRmiizQR6o0muV-ky8tlwaaZQRns9wUT&amp;noverify=0&amp;personal_qrcode_source=3" rel="external nofollow noreferrer" target="_blank" title="QQ"><i class="fab fa-qq" style="color: #018BBA;"></i></a><a class="social-icon" href="https://github.com/blankwy" rel="external nofollow noreferrer" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2035650646@qq.com" rel="external nofollow noreferrer" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://space.bilibili.com/37820495?" rel="external nofollow noreferrer" target="_blank" title="Bilibili"><i class="fab fa-bilibili" style="color: #FF6699;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">★ 欢迎来到我的博客</br>
+☁ 这里有：</br>
+  ☑ 技术文章、踩坑日志、折腾心得</br>
+  ☑ 资源分享、项目开发</br>
+  ☑ 学习笔记、生活感想</br>
+  ☑ 还有更多...</br>
+☂ 不过大抵是自娱自乐orz</br>
+✄⊹⊹⊹⊹⊹⊹⊹⊹⊹⊹<br>
+聊聊？加群：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://qm.qq.com/cgi-bin/qm/qr?k=pEGBXHfz4-ILg3qx0EKssiJ6L_I8h89y&jump_from=webapi&authKey=rg57DJVNBb76qv/vSqpC5rKTEI160LAQIcDJubweLMfu7ut7lF9Q+mTrGQmkcYx5">138547166</a><br>
+✄⊹⊹⊹⊹⊹⊹⊹⊹⊹⊹<br>
+了解我：<a href="https://blog.binarydev.top/about">About</a><br>
+</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E8%80%8C%E8%A8%80%E4%B9%8B%EF%BC%8C%E5%B0%B1%E6%98%AF%E5%B0%86%E5%AF%B9%E8%B1%A1%E5%AE%9E%E4%BE%8B%E7%9A%84%E5%88%9B%E5%BB%BA%E5%92%8C%E4%BE%9D%E8%B5%96%E7%AE%A1%E7%90%86%EF%BC%8C%E6%89%98%E7%AE%A1%E7%BB%99IoC%E5%AE%B9%E5%99%A8%EF%BC%8C%E5%86%8D%E9%80%9A%E8%BF%87%E6%B3%A8%E5%85%A5%E5%B0%86%E5%AE%9E%E4%BE%8B%E4%BC%A0%E9%80%92%E7%BB%99%E9%9C%80%E8%A6%81%E7%9A%84%E6%B5%81%E7%A8%8B%EF%BC%8C%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%A0%81%E7%9A%84%E8%A7%A3%E8%80%A6"><span class="toc-number">1.</span> <span class="toc-text">简而言之，就是将对象实例的创建和依赖管理，托管给IoC容器，再通过注入将实例传递给需要的流程，实现代码的解耦</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Register-%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C"><span class="toc-number"></span> <span class="toc-text">Register 服务注册</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Inject-%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%85%A5"><span class="toc-number"></span> <span class="toc-text">Inject 服务注入</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Constructor-Injection-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E6%B3%A8%E5%85%A5"><span class="toc-number"></span> <span class="toc-text">Constructor Injection 构造函数注入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Property-Injection-%E5%B1%9E%E6%80%A7%E6%B3%A8%E5%85%A5"><span class="toc-number"></span> <span class="toc-text">Property Injection 属性注入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Method-Injection-%E6%96%B9%E6%B3%95%E6%B3%A8%E5%85%A5"><span class="toc-number"></span> <span class="toc-text">Method Injection 方法注入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Interface-Injection-%E6%8E%A5%E5%8F%A3%E6%B3%A8%E5%85%A5"><span class="toc-number"></span> <span class="toc-text">Interface Injection 接口注入</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#LifeTime-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-number"></span> <span class="toc-text">LifeTime 生命周期</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Scoped"><span class="toc-number"></span> <span class="toc-text">Scoped</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Singleton"><span class="toc-number"></span> <span class="toc-text">Singleton</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Transient"><span class="toc-number"></span> <span class="toc-text">Transient</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number"></span> <span class="toc-text">参考文献</span></a></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/2026/01/17/csharp-DI1/" title="C#初探：DI注入及其生命周期">C#初探：DI注入及其生命周期</a><time datetime="2026-01-17T06:39:21.268Z" title="发表于 2026-01-17 14:39 14:39:21">2026-01-17 14:39</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/2025/10/27/stm32-basepin-and-gpio/" title="STM32核心引脚与GPIO - STM32学习笔记">STM32核心引脚与GPIO - STM32学习笔记</a><time datetime="2025-10-27T23:02:52.557Z" title="发表于 2025-10-28 07:02 07:02:52">2025-10-28 07:02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/2025/10/04/57523/" title="通过Air实现Go的热重载">通过Air实现Go的热重载</a><time datetime="2025-10-04T09:00:38.941Z" title="发表于 2025-10-04 17:00 17:00:38">2025-10-04 17:00</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/2025/08/09/35667/" title="npm无法加载文件，在此系统上禁止运行脚本。">npm无法加载文件，在此系统上禁止运行脚本。</a><time datetime="2025-08-09T04:45:19.114Z" title="发表于 2025-08-09 12:45 12:45:19">2025-08-09 12:45</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/2025/07/12/5908/" title="ES6异步编程笔记">ES6异步编程笔记</a><time datetime="2025-07-12T08:55:50.178Z" title="发表于 2025-07-12 16:55 16:55:50">2025-07-12 16:55</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2026 By BinaryDev</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener external nofollow noreferrer" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://unpkg.com/medium-zoom@1.1.0/dist/medium-zoom.min.js"></script><div class="js-pjax"><script>(()=>{
+  const getGiscusTheme = theme => {
+    return theme === 'dark' ? 'dark' : 'light'
+  }
+
+  const loadGiscus = () => {
+    const config = Object.assign({
+      src: 'https://giscus.app/client.js',
+      'data-repo': 'blankwy/blankwy.github.io',
+      'data-repo-id': 'R_kgDOLqNcSw',
+      'data-category-id': 'DIC_kwDOLqNcS84CepSn',
+      'data-mapping': 'pathname',
+      'data-theme': getGiscusTheme(document.documentElement.getAttribute('data-theme')),
+      'data-reactions-enabled': '1',
+      crossorigin: 'anonymous',
+      async: true
+    },null)
+
+    const ele = document.createElement('script')
+    for (let key in config) {
+      ele.setAttribute(key, config[key])
+    }
+    document.getElementById('giscus-wrap').appendChild(ele)
+  }
+
+  const changeGiscusTheme = theme => {
+    const sendMessage = message => {
+      const iframe = document.querySelector('iframe.giscus-frame')
+      if (!iframe) return
+      iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app')
+    }
+
+    sendMessage({
+      setConfig: {
+        theme: getGiscusTheme(theme)
+      }
+    });
+  }
+
+  btf.addGlobalFn('themeChange', changeGiscusTheme, 'giscus')
+
+  if ('Giscus' === 'Giscus' || !true) {
+    if (true) btf.loadComment(document.getElementById('giscus-wrap'), loadGiscus)
+    else loadGiscus()
+  } else {
+    window.loadOtherComment= loadGiscus
+  }
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>

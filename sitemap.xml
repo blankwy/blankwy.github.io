@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>https://blog.binarydev.top/talks.html</loc>
+    
+    <lastmod>2026-01-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.binarydev.top/about/index.html</loc>
+    
+    <lastmod>2026-01-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.binarydev.top/categories/index.html</loc>
+    
+    <lastmod>2026-01-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.binarydev.top/link/index.html</loc>
+    
+    <lastmod>2026-01-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.binarydev.top/tags/index.html</loc>
+    
+    <lastmod>2026-01-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.binarydev.top/posts/2026/01/17/csharp-DI1/</loc>
+    
+    <lastmod>2026-01-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.binarydev.top/posts/2025/10/27/stm32-basepin-and-gpio/</loc>
+    
+    <lastmod>2025-10-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.binarydev.top/posts/2025/10/04/57523/</loc>
+    
+    <lastmod>2025-10-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.binarydev.top/posts/2025/08/09/35667/</loc>
+    
+    <lastmod>2025-08-09</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.binarydev.top/posts/2025/07/12/5908/</loc>
+    
+    <lastmod>2025-07-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.binarydev.top/posts/2025/07/10/22810/</loc>
+    
+    <lastmod>2025-07-10</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.binarydev.top/posts/2025/07/05/7957/</loc>
+    
+    <lastmod>2025-07-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.binarydev.top/posts/2023/10/01/34687/</loc>
+    
+    <lastmod>2025-04-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.binarydev.top/posts/2025/01/27/27492/</loc>
+    
+    <lastmod>2025-01-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.binarydev.top/posts/2024/07/24/38823/</loc>
+    
+    <lastmod>2024-07-24</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.binarydev.top/posts/2024/04/13/27508/</loc>
+    
+    <lastmod>2024-07-24</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.binarydev.top/posts/2024/07/24/4187/</loc>
+    
+    <lastmod>2024-07-24</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.binarydev.top/posts/2023/10/04/16016/</loc>
+    
+    <lastmod>2023-10-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.binarydev.top/posts/2023/10/01/24250/</loc>
+    
+    <lastmod>2023-10-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+
+  <url>
+    <loc>https://blog.binarydev.top/</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  
+  <url>
+    <loc>https://blog.binarydev.top/tags/JavaScript/</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.binarydev.top/tags/%E7%BC%96%E7%A8%8B/</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.binarydev.top/tags/%E5%AD%A6%E4%B9%A0/</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.binarydev.top/tags/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.binarydev.top/tags/C/</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.binarydev.top/tags/%E8%B8%A9%E5%9D%91/</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.binarydev.top/tags/nodejs/</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.binarydev.top/tags/TypeScript/</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.binarydev.top/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.binarydev.top/tags/stm32/</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.binarydev.top/tags/%E5%8D%95%E7%89%87%E6%9C%BA/</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.binarydev.top/tags/hexo/</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.binarydev.top/tags/github/</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.binarydev.top/tags/actions/</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.binarydev.top/tags/%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.binarydev.top/tags/%E5%BB%BA%E7%AB%99/</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.binarydev.top/tags/java/</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.binarydev.top/tags/php/</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.binarydev.top/tags/sql/</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.binarydev.top/tags/Go/</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.binarydev.top/tags/python/</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.binarydev.top/tags/manim/</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.binarydev.top/tags/%E5%8A%A8%E7%94%BB/</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.binarydev.top/tags/%E9%A2%91%E7%8E%87%E5%88%86%E5%B8%83%E7%9B%B4%E6%96%B9%E5%9B%BE/</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.binarydev.top/tags/%E6%A0%B7%E6%9C%AC%E4%BC%B0%E8%AE%A1%E6%80%BB%E4%BD%93/</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.binarydev.top/tags/%E8%A7%86%E9%A2%91/</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.binarydev.top/tags/%E5%BC%80%E6%BA%90/</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.binarydev.top/tags/%E6%95%B0%E5%AD%A6/</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+
+  
+  <url>
+    <loc>https://blog.binarydev.top/categories/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.binarydev.top/categories/%E8%B8%A9%E5%9D%91%E6%97%A5%E8%AE%B0/</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.binarydev.top/categories/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/%E7%BC%96%E7%A8%8B/</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.binarydev.top/categories/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/%E7%A1%AC%E4%BB%B6/</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.binarydev.top/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.binarydev.top/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/%E5%BB%BA%E7%AB%99/</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.binarydev.top/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/%E5%BC%80%E6%BA%90/</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+</urlset>
