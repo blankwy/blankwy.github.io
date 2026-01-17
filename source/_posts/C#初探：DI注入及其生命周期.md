@@ -1,7 +1,7 @@
 ---
 abbrlink: csharp-DI1
 categories:
-- - 技术学习,编程
+- - [技术学习,编程]
 date: '2026-01-17T22:39:21.268416+08:00'
 tags:
 - C#
