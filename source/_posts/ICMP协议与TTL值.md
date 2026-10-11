@@ -1,7 +1,7 @@
 ---
 abbrlink: icmp_and_ttl_origin_article
 categories:
-- - 技术学习
+ - [技术学习,原理]
 date: '2026-10-11T15:52:03.910337+08:00'
 tags:
 - 学习
