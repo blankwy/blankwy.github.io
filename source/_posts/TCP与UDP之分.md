@@ -1,7 +1,7 @@
 ---
 abbrlink: tcp_vs_udp_origin_article
 categories:
-- - 技术学习,原理
+- [技术学习,原理]
 date: '2026-10-11T15:40:00.363905+08:00'
 tags:
 - 学习
